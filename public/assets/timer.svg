@@ -1,0 +1,15 @@
+<svg id="baseline-timer-24px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 71.219 71.219">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+      }
+
+      .cls-2 {
+        fill: #39b2c4;
+      }
+    </style>
+  </defs>
+  <path id="Path_16" data-name="Path 16" class="cls-1" d="M0,0H71.219V71.219H0Z"/>
+  <path id="Path_17" data-name="Path 17" class="cls-2" d="M38.61,1H20.8V6.935h17.8ZM26.74,39.577h5.935v-17.8H26.74ZM50.568,19.962l4.214-4.214A32.785,32.785,0,0,0,50.6,11.564l-4.214,4.214a26.7,26.7,0,1,0,4.184,4.184ZM29.707,57.382A20.772,20.772,0,1,1,50.479,36.61,20.757,20.757,0,0,1,29.707,57.382Z" transform="translate(5.902 1.967)"/>
+</svg>

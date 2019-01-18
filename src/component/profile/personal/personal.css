@@ -1,0 +1,35 @@
+.personal{
+    margin-top: 0rem;
+    color: #707070;
+}
+ul{
+    list-style-type: none !important;
+    display: block;
+    margin-left: 0;
+    margin-right: 0;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+
+}
+.fileInput {
+    border-bottom: 4px solid #d3d3d3;
+    border-right: 4px solid #d3d3d3;
+    border-top: 1px solid #000;
+    border-left: 1px solid #000;
+    padding: 10px;
+    margin: 15px;
+    cursor: pointer;
+}
+.imgPreview {
+    text-align: center;
+    margin: 5px 15px;
+    height: 200px;
+    width: 500px;
+}
+.imgPreview img {
+    width: 100%;
+    height: auto;
+}

@@ -1,0 +1,16 @@
+<svg id="baseline-headset_mic-24px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 91.996 91.996">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+        opacity: 0.1;
+      }
+
+      .cls-2 {
+        fill: #39b2c4;
+      }
+    </style>
+  </defs>
+  <path id="Path_8" data-name="Path 8" class="cls-1" d="M0,0H92V92H0Z"/>
+  <path id="Path_9" data-name="Path 9" class="cls-2" d="M37.5,1A34.5,34.5,0,0,0,3,35.5V62.33a11.484,11.484,0,0,0,11.5,11.5H26V43.165H10.666V35.5a26.832,26.832,0,1,1,53.664,0v7.666H49V73.83H64.33v3.833H37.5v7.666h23A11.484,11.484,0,0,0,72,73.83V35.5A34.5,34.5,0,0,0,37.5,1Z" transform="translate(8.499 2.833)"/>
+</svg>

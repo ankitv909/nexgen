@@ -1,0 +1,11 @@
+.setting{
+    margin-top: 2rem;
+    color: #707070;
+}
+ul{
+    list-style-type: none !important;
+    display: block;
+    margin-left: 0;
+    margin-right: 0;
+
+}

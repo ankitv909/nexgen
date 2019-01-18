@@ -1,0 +1,15 @@
+<svg id="baseline-library_books-24px_1_" data-name="baseline-library_books-24px (1)" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 73.2 73.2">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+      }
+
+      .cls-2 {
+        fill: #f8a662;
+      }
+    </style>
+  </defs>
+  <path id="Path_14" data-name="Path 14" class="cls-1" d="M0,0H73.2V73.2H0Z"/>
+  <path id="Path_15" data-name="Path 15" class="cls-2" d="M8.1,14.2H2V56.9A6.118,6.118,0,0,0,8.1,63H50.8V56.9H8.1ZM56.9,2H20.3a6.118,6.118,0,0,0-6.1,6.1V44.7a6.118,6.118,0,0,0,6.1,6.1H56.9A6.118,6.118,0,0,0,63,44.7V8.1A6.118,6.118,0,0,0,56.9,2ZM53.85,29.45H23.35v-6.1h30.5Zm-12.2,12.2H23.35v-6.1h18.3Zm12.2-24.4H23.35v-6.1h30.5Z" transform="translate(4.1 4.1)"/>
+</svg>
