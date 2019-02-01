@@ -9,10 +9,10 @@ import Button from "@material-ui/core/Button/Button";
 import FormHelperText from "@material-ui/core/FormHelperText/FormHelperText";
 import FormControl from "@material-ui/core/FormControl/FormControl";
 import axios from 'axios';
-import {applyMiddleware as dispatch} from "redux";
 import Avatar from "@material-ui/core/Avatar";
 import {Link} from "react-router-dom";
 import Divider from "@material-ui/core/Divider";
+import { applyMiddleware as dispatch } from 'redux'
 
 
 function TabContainer({ children, dir }) {
@@ -74,6 +74,11 @@ const styles = theme => ({
         padding: '8px 30px',
         color:'#ffff',
         textTransform:'none',
+  '&:hover': {
+    backgroundColor: '#105489',
+      border:'1px solid #4A88C6',
+      color:'#ffffff'
+},
     },
     textTransform :{
         textTransform: "none",
@@ -153,8 +158,8 @@ class Login extends Component {
         this.state = {
             value: 0,
             formData: {
-                company_email : {value: '', isValid: false, isUntouched: true},
-                company_password : {value: '', isValid: false, isUntouched: true},
+                user_email : {value: '', isValid: false, isUntouched: true},
+                user_password : {value: '', isValid: false, isUntouched: true},
             }
         };
         this.handleChange = this.handleChange.bind(this);
@@ -178,24 +183,21 @@ class Login extends Component {
     handleSubmit = async event => {
         console.log(this.state);
         const { formData } = this.state;
-        /* const data = {
-             company_email: formData.company_email.value,
-             company_password: formData.company_password.value,
+         /*const data = {
+             user_email: formData.user_email.value,
+             user_password: formData.user_password.value,
          };*/
         event.preventDefault();
         axios({
             method: 'post',
-            url: 'http://ci.monetrewards.com:4282/auth/sign_in',
+            url: 'http://localhost:4000/login',
             data: {
-                company_email: formData.company_email.value,
-                company_password: formData.company_password.value,
-            },
-            auth: {
-                tokens: { }
+                user_email: formData.user_email.value,
+                user_password: formData.user_password.value,
             }
         })
-            .then(res => res.json.then(user => ({ formData, res }))
-            ).then(({ formdata, res }) =>  {
+            .then(res => res.json.then(user => ({ formData, res })))
+            .then(({ formdata, res }) =>  {
             if (!res.ok) {
                 // If there was a problem, we want to
                 // dispatch the error condition
@@ -206,14 +208,13 @@ class Login extends Component {
                 localStorage.setItem('id_token', formdata.id_token)
                 localStorage.setItem('id_token', formdata.access_token)
                 // Dispatch the success action
-                dispatch(formdata)
+              dispatch(formdata)
             }
-        }).catch(err => console.log("Error: ", err))()
-            .then(
+        }).catch(err => console.log("Error: ", err)).then(
                 (result) => {
                     this.setState({
                         isLoaded: true,
-                        items: result.items
+                       /* items: result.items*/
                     });
                 },
                 // Note: it's important to handle errors here
@@ -226,14 +227,14 @@ class Login extends Component {
                     });
                 }
             )
-    }
+    };
 
     componentDidMount() {}
 
     static handleValidation(type, value) {
-        if (type === 'company_email')
+        if (type === 'user_email')
             return !!value.match(/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,3}$/);
-        else if (type === 'company_password' || type === 'company_confirm_password')
+        else if (type === 'user_password')
             return !!value.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&'])[^ ]{8,}$/);
     }
     render() {
@@ -246,7 +247,7 @@ class Login extends Component {
         return (
             <div className="login">
                 <title>Login</title>
-                <form onSubmit={this.handleSubmit}>
+                <form onSubmit={this.handleSubmit} method="Post">
                     <div className={classes.paddingLR}>
                         <Grid
                             container
@@ -255,21 +256,21 @@ class Login extends Component {
                             alignItems="center"
                         >
                             <div className={classes.margin}>
-                                <FormControl className={classes.formControl} error={!formData.company_email.isValid && !formData.company_email.isUntouched} aria-describedby="company-email-error-text" fullWidth>
+                                <FormControl className={classes.formControl} error={!formData.user_email.isValid && !formData.user_email.isUntouched} aria-describedby="user-email-error-text" fullWidth>
                                     <TextField
                                         fullWidth
                                         className={classes.textField}
-                                        id="company-email-error-text"
+                                        id="user-email-error-text"
                                         placeholder="username"
                                         margin="none"
                                         autoComplete="username"
-                                        name="company_email"
+                                        name="user_email"
                                         onChange={this.handleInputChange}
                                     />
-                                    <FormHelperText id="company-email-error-text" style={{visibility: formData.company_email.isValid || formData.company_email.isUntouched ? 'hidden' : 'visible'}}>Error</FormHelperText>
+                                    <FormHelperText id="user-email-error-text" style={{visibility: formData.user_email.isValid || formData.user_email.isUntouched ? 'hidden' : 'visible'}}>Error</FormHelperText>
                                 </FormControl>
 
-                                <FormControl className={classes.formControl} error={!formData.company_password.isValid && !formData.company_password.isUntouched} aria-describedby="company-password-error-text" fullWidth>
+                                <FormControl className={classes.formControl} error={!formData.user_password.isValid && !formData.user_password.isUntouched} aria-describedby="user-password-error-text" fullWidth>
                                     <TextField
                                         placeholder="password"
                                         fullWidth
@@ -277,10 +278,10 @@ class Login extends Component {
                                         id="password"
                                         type="password"
                                         margin="none"
-                                        name="company_password"
+                                        name="user_password"
                                         onChange={this.handleInputChange}
                                     />
-                                    <FormHelperText id="company-password-error-text" style={{visibility: formData.company_password.isValid || formData.company_password.isUntouched ? 'hidden' : 'visible'}}>Error</FormHelperText>
+                                    <FormHelperText id="user-password-error-text" style={{visibility: formData.user_password.isValid || formData.user_password.isUntouched ? 'hidden' : 'visible'}}>Error</FormHelperText>
                                 </FormControl>
                             </div>
                         </Grid>

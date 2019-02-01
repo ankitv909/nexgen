@@ -71,6 +71,11 @@ const styles = theme => ({
         padding: '6px 24px',
         color:'#ffff',
         textTransform:'none',
+        '&:hover': {
+            backgroundColor: '#105489',
+            border:'1px solid #4A88C6',
+            color:'#ffffff'
+        },
 
     },
     textTransform :{
@@ -138,21 +143,21 @@ const styles = theme => ({
 class Signup extends Component {
     constructor(props) {
         super(props);
-        document.title = 'Monet | Sign up';
+        document.title = 'NEXGEN | Sign up';
         this.state = {
             formData: {
-                company_name : {value: '', isValid: false, isUntouched: true},
-                company_email : {value: '', isValid: false, isUntouched: true},
-                company_password : {value: '', isValid: false, isUntouched: true},
-                company_gender : {value: '', isValid: false, isUntouched: true},
-                company_phone : {value: '', isValid: false, isUntouched: true}
+                user_name : {value: '', isValid: false, isUntouched: true},
+                user_email : {value: '', isValid: false, isUntouched: true},
+                user_password : {value: '', isValid: false, isUntouched: true},
+                user_gender : {value: '', isValid: false, isUntouched: true},
+                user_phone : {value: '', isValid: false, isUntouched: true}
             },
             single: '',
             popper: '',
             suggestions: [],
             password: '',
             showPassword: false,
-            value: 'female',
+            value: '',
         };
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -180,7 +185,6 @@ class Signup extends Component {
     handleChangepassword = prop => event => {
         this.setState({ [prop]: event.target.value });
     };
-
     handleInputChange(event) {
         const target = event.target;
         const name = target.name;
@@ -192,53 +196,67 @@ class Signup extends Component {
             formData
         });
     }
-    handleSubmit(event) {
+    handleSubmit = async event => {
         console.log(this.state);
         const { formData } = this.state;
         /* const data = {
-             company_email: formData.company_email.value,
-             company_password: formData.company_password.value,
+             user_email: formData.user_email.value,
+             user_password: formData.user_password.value,
          };*/
         event.preventDefault();
         axios({
             method: 'post',
-            url: 'http://ci.monetrewards.com:4282/auth/register',
+            url: 'http://localhost:4000/register',
             data: {
-                company_name: formData.company_name.value,
-                company_email: formData.company_email.value,
-                company_phone: formData.company_phone.value,
-                company_password: formData.company_password.value,
-                company_gender: formData.company_gender.value,
+                user_name: formData.user_name.value,
+                user_email: formData.user_email.value,
+                user_phone: formData.user_phone.value,
+                user_password: formData.user_password.value,
+                user_gender: formData.user_gender.value,
             },
 
         })
-            .then(res => res.json())
-            .then(
-                (result) => {
-                    this.setState({
-                        isLoaded: true,
-                        items: result.items
-                    });
-                },
-                // Note: it's important to handle errors here
-                // instead of a catch() block so that we don't swallow
-                // exceptions from actual bugs in components.
-                (error) => {
-                    this.setState({
-                        isLoaded: true,
-                        error
-                    });
-                }
+          .then(res => res.json.then(user => ({ formData, res }))
+          ).then(({ formdata, res }) =>  {
+            if (!res.ok) {
+                // If there was a problem, we want to
+                // dispatch the error condition
+                // dispatch(Error(formdata.message))
+                return Promise.reject(formdata)
+            } else {
+                // If login was successful, set the token in local storage
+                localStorage.setItem('id_token', formdata.id_token)
+                localStorage.setItem('id_token', formdata.access_token)
+                // Dispatch the success action
+                // dispatch(formdata)
+            }
+        }).catch(err => console.log("Error: ", err))
+          .then(
+            (result) => {
+                this.setState({
+                    isLoaded: true,
+                   /* items: result.items*/
+                });
+            },
+            // Note: it's important to handle errors here
+            // instead of a catch() block so that we don't swallow
+            // exceptions from actual bugs in components.
+            (error) => {
+                this.setState({
+                    isLoaded: true,
+                    error
+                });
+            }
             )
     }
     static handleValidation(type, value) {
-        if (type === 'company_name' )
+        if (type === 'user_name' )
             return value.length > 3 && !!value.match(/^[a-zA-Z ]*$/);
-        else if (type === 'company_email')
+        else if (type === 'user_email')
             return !!value.match(/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,3}$/);
-        else if (type === 'company_password')
+        else if (type === 'user_password')
             return !!value.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&'])[^ ]{8,}$/);
-        else if (type === 'company_phone')
+        else if (type === 'user_phone')
             return (value.length <= 10 && !!value.match(/^[0-9]*$/));
     }
     render() {
@@ -251,7 +269,7 @@ class Signup extends Component {
         return (
             <div className="signup">
                 <title>Signup</title>
-                <form onSubmit={this.handleSubmit}>
+                <form onSubmit={this.handleSubmit} method="Post">
                     <div className={classes.paddingLR}>
                         <Grid
                             container
@@ -260,9 +278,9 @@ class Signup extends Component {
                             alignItems="center"
                         >
                             <div className={classes.margin}>
-                                <FormControl className={classes.formControl} error={!formData.company_name.isValid && !formData.company_name.isUntouched} aria-describedby="company-name-error-text" fullWidth>
-                                    <Input id="company-name" name="company_name" onChange={this.handleInputChange} placeholder="Name" />
-                                    <FormHelperText className={classes.margint} id="company-name-error-text" style={{visibility: formData.company_name.isValid || formData.company_name.isUntouched ? 'hidden' : 'visible'}}>Error</FormHelperText>
+                                <FormControl className={classes.formControl} error={!formData.user_name.isValid && !formData.user_name.isUntouched} aria-describedby="user-name-error-text" fullWidth>
+                                    <Input id="user-name" name="user_name" onChange={this.handleInputChange} placeholder="Name" />
+                                    <FormHelperText className={classes.margint} id="user-name-error-text" style={{visibility: formData.user_name.isValid || formData.user_name.isUntouched ? 'hidden' : 'visible'}}>Error</FormHelperText>
                                 </FormControl>
 
                                 <Grid
@@ -275,35 +293,35 @@ class Signup extends Component {
                                           direction="row"
                                           justify="flex-start"
                                           alignItems="center">
-                                        <FormControl className={classes.formControl} error={!formData.company_email.isValid && !formData.company_email.isUntouched} aria-describedby="company-email-error-text" fullWidth>
-                                            <Input id="company-email" name="company_email" onChange={this.handleInputChange} placeholder="Email" />
-                                            <FormHelperText className={classes.margint} id="company-email-error-text" style={{visibility: formData.company_email.isValid || formData.company_email.isUntouched ? 'hidden' : 'visible'}}>Error</FormHelperText>
+                                        <FormControl className={classes.formControl} error={!formData.user_email.isValid && !formData.user_email.isUntouched} aria-describedby="user-email-error-text" fullWidth>
+                                            <Input id="user-email" name="user_email" onChange={this.handleInputChange} placeholder="Email" />
+                                            <FormHelperText className={classes.margint} id="user-email-error-text" style={{visibility: formData.user_email.isValid || formData.user_email.isUntouched ? 'hidden' : 'visible'}}>Error</FormHelperText>
                                         </FormControl>
                                     </Grid>
                                     <Grid item lg={1}/>
                                     <Grid item lg={5}>
-                                        <FormControl className={classes.formControl} error={!formData.company_phone.isValid && !formData.company_phone.isUntouched} aria-describedby="company-phone-error-text" fullWidth>
-                                            <Input id="company-phone" name="company_phone" onChange={this.handleInputChange} placeholder="Phone" />
-                                            <FormHelperText className={classes.margint} id="company-phone-error-text" style={{visibility: formData.company_phone.isValid || formData.company_phone.isUntouched ? 'hidden' : 'visible'}}>Error</FormHelperText>
+                                        <FormControl className={classes.formControl} error={!formData.user_phone.isValid && !formData.user_phone.isUntouched} aria-describedby="user-phone-error-text" fullWidth>
+                                            <Input id="user-phone" name="user_phone" onChange={this.handleInputChange} placeholder="Phone" />
+                                            <FormHelperText className={classes.margint} id="user-phone-error-text" style={{visibility: formData.user_phone.isValid || formData.user_phone.isUntouched ? 'hidden' : 'visible'}}>Error</FormHelperText>
                                         </FormControl>
                                     </Grid>
 
                                 </Grid>
 
-                                <FormControl className={classes.formControl} error={!formData.company_password.isValid && !formData.company_password.isUntouched} aria-describedby="company-password-error-text" fullWidth>
-                                    <Input type="password" id="company-password" name="company_password" onChange={this.handleInputChange} placeholder="Password" />
-                                    <FormHelperText className={classes.margint} id="company-password-error-text" style={{visibility: formData.company_password.isValid || formData.company_password.isUntouched ? 'hidden' : 'visible'}}>Error</FormHelperText>
+                                <FormControl className={classes.formControl} error={!formData.user_password.isValid && !formData.user_password.isUntouched} aria-describedby="user-password-error-text" fullWidth>
+                                    <Input type="password" id="user-password" name="user_password" onChange={this.handleInputChange} placeholder="Password" />
+                                    <FormHelperText className={classes.margint} id="user-password-error-text" style={{visibility: formData.user_password.isValid || formData.user_password.isUntouched ? 'hidden' : 'visible'}}>Error</FormHelperText>
                                 </FormControl>
 
-                                <FormControl component="fieldset" className={classes.formControl} error={!formData.company_gender.isValid && !formData.company_gender.isUntouched} aria-describedby="company-gender-error-text" fullWidth>
+                                <FormControl component="fieldset" className={classes.formControl} error={!formData.user_gender.isValid && !formData.user_gender.isUntouched} aria-describedby="user-gender-error-text" fullWidth>
                                     <Grid
                                         container
                                         direction="row"
                                         justify="flex-start"
                                         alignItems="center"
                                     >
-                                        <FormLabel component="legend" onChange={this.handleInputChange} id="company-gender" name="company_gender">Gender</FormLabel>
-                                        <FormHelperText className={classes.margint} id="company-gender-error-text" style={{visibility: formData.company_gender.isValid || formData.company_gender.isUntouched ? 'hidden' : 'visible'}}>Error</FormHelperText>
+                                        <FormLabel component="legend" onChange={this.handleInputChange} id="user-gender" name="user_gender">Gender</FormLabel>
+                                        <FormHelperText className={classes.margint} id="user-gender-error-text" style={{visibility: formData.user_gender.isValid || formData.user_gender.isUntouched ? 'hidden' : 'visible'}}>Error</FormHelperText>
                                     </Grid>
 
                                         <RadioGroup
@@ -346,19 +364,20 @@ class Signup extends Component {
                             </div>
                         </Grid>
                     </div>
-                </form>
-                <Grid
-                    container
-                    direction="row"
-                    justify="flex-end"
-                    alignItems="center"
-                    item xs={12} sm={12} md={12} lg={12} xl={12} >
-                    <Grid  item xs={12} sm={12} md={12} lg={3} xl={12} >
-                        <Button type="submit" variant="contained"  className={classes.button} style={{visibility: isEnabled ? 'visible' : 'hidden'}}>
-                            Sign Up
-                        </Button>
+                    <Grid
+                      container
+                      direction="row"
+                      justify="flex-end"
+                      alignItems="center"
+                      item xs={12} sm={12} md={12} lg={12} xl={12} >
+                        <Grid  item xs={12} sm={12} md={12} lg={3} xl={12} >
+                            <Button type="submit" variant="contained"  className={classes.button} disabled={!isEnabled}> {/*style={{visibility: isEnabled ? 'visible' : 'hidden'}}*/}
+                                Sign Up
+                            </Button>
+                        </Grid>
                     </Grid>
-                </Grid>
+                </form>
+
             </div>
         );
     }

@@ -10,6 +10,25 @@
       homescreen on Android. See https://developers.google.com/web/fundamentals/web-app-manifest/
     -->
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
+    <style>
+      ::-webkit-scrollbar-track
+      {
+        -webkit-box-shadow: inset 0 0 6px #E5E6E8;
+        background-color: #E5E6E8;
+      }
+
+      ::-webkit-scrollbar
+      {
+        width: 4px;
+        background-color: #F5F5F5;
+      }
+
+      ::-webkit-scrollbar-thumb
+      {
+        background-color: gray;
+      }
+
+    </style>
     <!--
       Notice the use of %PUBLIC_URL% in the tags above.
       It will be replaced with the URL of the `public` folder during the build.
@@ -37,23 +56,4 @@
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
   </body>
-<style>
-  ::-webkit-scrollbar-track
-  {
-    -webkit-box-shadow: inset 0 0 6px #E5E6E8;
-    background-color: #E5E6E8;
-  }
-
-  ::-webkit-scrollbar
-  {
-    width: 4px;
-    background-color: #F5F5F5;
-  }
-
-  ::-webkit-scrollbar-thumb
-  {
-    background-color: gray;
-  }
-
-</style>
 </html>

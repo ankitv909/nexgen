@@ -39,10 +39,10 @@ const styles = theme => ({
 
     },
     paper:{
-        paddingLeft: theme.spacing.unit * 0,
-        paddingRight: theme.spacing.unit * 0,
-        paddingTop: theme.spacing.unit * 0,
-        paddingBottom: theme.spacing.unit * 0,
+        paddingLeft: 0,
+        paddingRight: 0,
+        paddingTop: 0,
+        paddingBottom: 0,
         width:'100%',
         borderRadius: 0,
         backgroundColor:'#e5e6e878',
@@ -304,7 +304,7 @@ class Listeningtest extends Component {
     componentDidMount() {
         this.intervalId = setInterval(this.timer.bind(this), 1800);
     }
-    componentWillUnmount(){
+    componentWillUnmount() {
         clearInterval(this.intervalId);
     }
     secToMinutes(value: number): string {
@@ -317,7 +317,7 @@ class Listeningtest extends Component {
             const minutes: number = Math.floor(value / 60);
             return Math.floor(minutes) < 10 ? '0' + Math.floor(minutes) + ':' + ( Math.floor(value - minutes * 60) < 10 ? '0' + Math.floor(value - minutes * 60) : Math.floor(value - minutes * 60)) : Math.floor(minutes) + ':' + ( Math.floor(value - minutes * 60) < 10 ? '0' + Math.floor(value - minutes * 60) : Math.floor(value - minutes * 60));
         }
-    }
+    };
     render() {
         const { classes } = this.props;
         const { value } = this.state;
