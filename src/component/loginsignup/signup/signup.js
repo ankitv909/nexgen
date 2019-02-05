@@ -235,7 +235,7 @@ class Signup extends Component {
           .then((result) => {
               this.setState({
                   isLoaded: true,
-                  items: result.items
+                 /* items: result.items*/
               });
           });
     }
