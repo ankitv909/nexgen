@@ -16,6 +16,7 @@ import RadioGroup from "@material-ui/core/RadioGroup";
 import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
 /*import RadioButtonCheckedIcon from '@material-ui/icons/RadioButtonChecked';*/
 import Avatar from "@material-ui/core/Avatar";
+import { applyMiddleware as dispatch } from 'redux'
 
 
 function TabContainer({ children, dir }) {
@@ -158,6 +159,9 @@ class Signup extends Component {
             password: '',
             showPassword: false,
             value: '',
+            error: null,
+            isLoaded: false,
+            items: []
         };
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -185,6 +189,7 @@ class Signup extends Component {
     handleChangepassword = prop => event => {
         this.setState({ [prop]: event.target.value });
     };
+
     handleInputChange(event) {
         const target = event.target;
         const name = target.name;
@@ -199,10 +204,6 @@ class Signup extends Component {
     handleSubmit = async event => {
         console.log(this.state);
         const { formData } = this.state;
-        /* const data = {
-             user_email: formData.user_email.value,
-             user_password: formData.user_password.value,
-         };*/
         event.preventDefault();
         axios({
             method: 'post',
@@ -213,41 +214,30 @@ class Signup extends Component {
                 user_phone: formData.user_phone.value,
                 user_password: formData.user_password.value,
                 user_gender: formData.user_gender.value,
-            },
-
+            }
         })
-          .then(res => res.json.then(user => ({ formData, res }))
-          ).then(({ formdata, res }) =>  {
-            if (!res.ok) {
-                // If there was a problem, we want to
-                // dispatch the error condition
-                // dispatch(Error(formdata.message))
-                return Promise.reject(formdata)
-            } else {
-                // If login was successful, set the token in local storage
-                localStorage.setItem('id_token', formdata.id_token)
-                localStorage.setItem('id_token', formdata.access_token)
-                // Dispatch the success action
-                // dispatch(formdata)
-            }
-        }).catch(err => console.log("Error: ", err))
-          .then(
-            (result) => {
-                this.setState({
-                    isLoaded: true,
-                   /* items: result.items*/
-                });
-            },
-            // Note: it's important to handle errors here
-            // instead of a catch() block so that we don't swallow
-            // exceptions from actual bugs in components.
-            (error) => {
-                this.setState({
-                    isLoaded: true,
-                    error
-                });
-            }
-            )
+          .then(res => res.json().then(user => ({ formData, res })))
+          .then(({ formdata, res }) =>  {
+              if (!res.ok) {
+                  // If there was a problem, we want to
+                  // dispatch the error condition
+                  dispatch(Error(formdata.message))
+                  return Promise.reject(formdata)
+              } else {
+                  // If login was successful, set the token in local storage
+                  localStorage.setItem('id_token', formdata.id_token)
+                  localStorage.setItem('id_token', formdata.access_token)
+                  // Dispatch the success action
+                  // dispatch(formdata)
+              }
+          })
+          .catch(err => console.log("Error: ", err))
+          .then((result) => {
+              this.setState({
+                  isLoaded: true,
+                  items: result.items
+              });
+          });
     }
     static handleValidation(type, value) {
         if (type === 'user_name' )

@@ -160,7 +160,9 @@ class Login extends Component {
             formData: {
                 user_email : {value: '', isValid: false, isUntouched: true},
                 user_password : {value: '', isValid: false, isUntouched: true},
-            }
+            },
+            error: null,
+            isLoaded: false
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
@@ -188,46 +190,37 @@ class Login extends Component {
              user_password: formData.user_password.value,
          };*/
         event.preventDefault();
-        axios({
-            method: 'post',
-            url: 'http://localhost:4000/login',
-            data: {
-                user_email: formData.user_email.value,
-                user_password: formData.user_password.value,
-            }
+      axios({
+        method: 'post',
+        url: 'http://localhost:4000/login',
+        data: {
+          user_email: formData.user_email.value,
+          user_password: formData.user_password.value,
+        }
+      })
+        .then(res => res.json().then(user => ({ formData, res })))
+        .then(({ formdata, res }) =>  {
+          if (!res.ok) {
+            // If there was a problem, we want to
+            // dispatch the error condition
+            dispatch(Error(formdata.message))
+            return Promise.reject(formdata)
+          } else {
+            // If login was successful, set the token in local storage
+            localStorage.setItem('id_token', formdata.id_token)
+            localStorage.setItem('id_token', formdata.access_token)
+            // Dispatch the success action
+             dispatch(formdata)
+          }
         })
-            .then(res => res.json.then(user => ({ formData, res })))
-            .then(({ formdata, res }) =>  {
-            if (!res.ok) {
-                // If there was a problem, we want to
-                // dispatch the error condition
-                dispatch(Error(formdata.message))
-                return Promise.reject(formdata)
-            } else {
-                // If login was successful, set the token in local storage
-                localStorage.setItem('id_token', formdata.id_token)
-                localStorage.setItem('id_token', formdata.access_token)
-                // Dispatch the success action
-              dispatch(formdata)
-            }
-        }).catch(err => console.log("Error: ", err)).then(
-                (result) => {
-                    this.setState({
-                        isLoaded: true,
-                       /* items: result.items*/
-                    });
-                },
-                // Note: it's important to handle errors here
-                // instead of a catch() block so that we don't swallow
-                // exceptions from actual bugs in components.
-                (error) => {
-                    this.setState({
-                        isLoaded: true,
-                        error
-                    });
-                }
-            )
-    };
+        .catch(err => console.log("Error: ", err))
+        .then((result) => {
+          this.setState({
+            isLoaded: true,
+              error:''
+          });
+        });
+    }
 
     componentDidMount() {}
 
@@ -239,7 +232,7 @@ class Login extends Component {
     }
     render() {
         const { classes } = this.props;
-        const { formData } = this.state;
+        const { formData,} = this.state;
         let isEnabled = false;
         for (let key in formData) {
             isEnabled = formData[key].isValid;

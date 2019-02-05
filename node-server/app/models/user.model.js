@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-mongoose.set('useCreateIndex', true);
+
 
 const UserSchema = mongoose.Schema({
   user_email: {type: String, unique: true, required: true, trim: true},
