@@ -230,7 +230,7 @@ class Readingresult extends Component {
             <Grid container direction='row' justify='center' alignItems='center' item xs={12} lg={8} md={8} sm={8} xl={8} className={classes.Margin}>
               <Paper className={classes.paper2}>
                 <Grid container direction='row' item xs={12} lg={12} md={12} sm={12} xl={12} >
-                  <Grid container direction='row' justify='flex-start' alignItems='flex-start' item xs={8} lg={2} md={3} sm={4} xl={3}>
+                  <Grid container direction='row' justify='flex-start' alignItems='flex-start' item xs={8} lg={2} md={3} sm={4} xl={2}>
                     <img src='/assets/thumb.svg' alt='thumb' className={classes.imgresponsive} />
                   </Grid>
                   <Grid container direction='column' justify='space-around' alignItems='flex-start' item xs={12} lg={6} md={6} sm={5} xl={6}>
@@ -244,7 +244,7 @@ class Readingresult extends Component {
                       <Typography variant='caption' className={classes.color}>Test Taken: 20198</Typography>
                     </div>
                   </Grid>
-                  <Grid container direction='column' justify='space-around' alignItems='flex-end' item xs={12} lg={4} md={3} sm={3} xl={3}>
+                  <Grid container direction='column' justify='space-around' alignItems='flex-end' item xs={12} lg={4} md={3} sm={3} xl={4}>
                     <div style={{ paddingRight: '8px' }}>
                       <Typography variant="caption" className={classes.colr}>Published: 20 July, 2018</Typography>
                     </div>

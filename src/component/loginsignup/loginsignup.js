@@ -20,14 +20,14 @@ import Otpverify from "../loginsignup/otpverify/otpverify"
 const styles = theme => ({
     card: {
         minWidth: 275,
-        minHeight:'21rem',
+        minHeight:'21.5rem',
         borderRadius:'0',
         backgroundColor:'#257CBF',
     },
     cardloginsignup: {
         minWidth: 275,
         borderRadius:'0',
-        minHeight:'20rem',
+        minHeight:'21.5rem',
     },
     bullet: {
         display: 'inline-block',
@@ -65,7 +65,11 @@ const styles = theme => ({
         minWidth: 120,
         borderRadius:'0',
         position:'relative',
-        right:'6rem'
+        right:'6rem',
+        '&:hover': {
+            backgroundColor: '#dc8339',
+            opacity: 1,
+        },
     },
     tabsRoot: {
         borderBottom: '1px solid #e8e8e8',
@@ -140,7 +144,7 @@ class Loginsignup extends Component {
                       justify="center"
                       alignItems="center"
                       item xs={12} sm={12} md={12} lg={12} xl={12}>
-                    <Grid item xs={12} sm={6} md={5} lg={4} xl={4} >
+                    <Grid item xs={12} sm={6} md={5} lg={4} xl={3} >
                         <Card className={classes.card} >
                             <CardContent>
                                 <Typography className={classes.title} color="textSecondary" gutterBottom>
@@ -169,7 +173,7 @@ class Loginsignup extends Component {
                             </CardActions>
                         </Card>
                     </Grid>
-                    <Grid item xs={12} sm={6} md={5} lg={4} xl={4} >
+                    <Grid item xs={12} sm={6} md={5} lg={4} xl={3} >
                         <Card className={classes.cardloginsignup} >
                             <CardContent>
                                 <Grid container

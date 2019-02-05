@@ -194,8 +194,8 @@ class Testdescptions extends Component {
                                     </Grid>
                                 </Grid>
                             </Paper>
-                            <Grid container direction="row" justify="flex-end" alignItems="flex-end" item xs={8} lg={12} md={6} sm={5} xl={6}>
-                                <Grid container direction="column" justify="flex-end" alignItems="flex-end" item xs={8} lg={8} md={6} sm={5} xl={6}>
+                            <Grid container direction="row" justify="flex-end" alignItems="flex-end" item xs={8} lg={12} md={6} sm={5} xl={10}>
+                                <Grid container direction="column" justify="flex-end" alignItems="flex-end" item xs={8} lg={8} md={6} sm={5} xl={10}>
                                 <Paper className={classes.paper4}>
                                     <Typography className={`${classes.color} ${classes.paddingleft24}`} gutterBottom >INSTRUCTIONS</Typography>
                                 </Paper>

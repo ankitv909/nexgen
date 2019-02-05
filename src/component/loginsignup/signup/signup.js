@@ -360,7 +360,7 @@ class Signup extends Component {
                       justify="flex-end"
                       alignItems="center"
                       item xs={12} sm={12} md={12} lg={12} xl={12} >
-                        <Grid  item xs={12} sm={12} md={12} lg={3} xl={12} >
+                        <Grid  item xs={12} sm={12} md={12} lg={3} xl={3} >
                             <Button type="submit" variant="contained"  className={classes.button} disabled={!isEnabled}> {/*style={{visibility: isEnabled ? 'visible' : 'hidden'}}*/}
                                 Sign Up
                             </Button>

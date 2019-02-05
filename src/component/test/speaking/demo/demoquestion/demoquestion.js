@@ -289,7 +289,7 @@ class Demoquestion extends Component {
                         <Grid container direction="row" justify="center" alignItems="center" item xs={3} lg={3} md={3} sm={3} xl={3} className={classes.Margin1}>
                             <Paper className={classes.paper3}>
                                 <Grid container direction="row"  justify="center" alignItems="center" item xs={12} lg={12} md={12} sm={12} xl={12} className={classes.Margin2}>
-                                    <Grid item xs={12} lg={10} md={12} sm={12} xl={12}>
+                                    <Grid item xs={12} lg={10} md={12} sm={12} xl={7}>
                                         <Typography variant="subtitle1"  className={classes.colr} style={{textAlign:'center',lineHeight:'1.3',marginTop:'5rem'}}>We recommend you to take a view of the demo before appearing the final exam. </Typography>
                                     </Grid>
                                 </Grid>

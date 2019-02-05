@@ -212,10 +212,10 @@ class Otpverify extends Component {
             </Typography>
             </Grid>
           <Grid container direction="column" justify="center" alignItems="flex-end" item lg={12} xl={11} md={12} sm={12} xs={12} className={classes.margintop}>
-            <Grid container direction="row" justify="flex-start" alignItems="center" item xs={11} sm={11} md={10} lg={10} xl={9}>
+            <Grid container direction="row" justify="flex-start" alignItems="center" item xs={11} sm={11} md={10} lg={10} xl={10}>
               <Typography variant="caption" className={classes.colorg}>Verification mail, has been sent successfully.</Typography>
             </Grid>
-            <Grid container direction="row" justify="flex-start" alignItems="center" item xs={11} sm={11} md={10} lg={10} xl={9}>
+            <Grid container direction="row" justify="flex-start" alignItems="center" item xs={11} sm={11} md={10} lg={10} xl={10}>
               <Typography variant="caption" className={classes.colorg}>Kindly check your mail to reset your password. <Button className={classes.sendmsg}>Send again</Button></Typography>
             </Grid>
           </Grid>

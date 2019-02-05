@@ -223,7 +223,7 @@ class Demo extends Component {
             <div className="demo">
                 <div >
                     <Grid container direction="row" justify="space-evenly" alignItems="flex-start" item xs={12} lg={12} md={12} sm={12} xl={12} >
-                        <Grid container direction="row" justify="center" alignItems="center" item xs={8} lg={12} md={8} sm={8} xl={8}>
+                        <Grid container direction="row" justify="center" alignItems="center" item xs={8} lg={12} md={8} sm={8} xl={10}>
                             <Grid container direction="row" justify="center" alignItems="center" item xs={8} lg={12} md={12} sm={12} xl={12} className={classes.Margin1}>
                                 <Paper className={classes.paper2}>
                                     <Grid container direction="row" justify="flex-start" alignItems="center"  item xs={12} lg={12} md={12} sm={12} xl={12}>
