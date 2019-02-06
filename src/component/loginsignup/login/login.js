@@ -256,7 +256,7 @@ class Login extends Component {
                                         id="user-email-error-text"
                                         placeholder="username"
                                         margin="none"
-                                        autoComplete="username"
+                                        autoComplete="email"
                                         name="user_email"
                                         onChange={this.handleInputChange}
                                     />
