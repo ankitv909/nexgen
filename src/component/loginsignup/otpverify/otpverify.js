@@ -137,6 +137,7 @@ class Otpverify extends Component {
   handleotpSubmit = e => {
     e.preventDefault();
     alert(this.state.otp);
+
   };
   handleInputChange(event) {
     const target = event.target;
@@ -251,7 +252,7 @@ class Otpverify extends Component {
             </Grid>
             <Grid container direction="row" justify="center" alignItems="center" item xs={12} sm={12} md={12} lg={12} xl={12} className={classes.margintop}>
               <Grid item xs={12} sm={12} md={12} lg={12} xl={12} >
-                <Button type="submit" variant="contained"   className={classes.button} disabled={otp.length < numInputs}> {/*style={{visibility:  isDisabled ? 'visible' : 'hidden'}}*/}
+                <Button type="submit" variant="contained" component={Link} to="/resetpassword" className={classes.button} disabled={otp.length < numInputs}> {/*style={{visibility:  isDisabled ? 'visible' : 'hidden'}}*/}
                   Proceed
                 </Button>
               </Grid>

@@ -172,7 +172,7 @@ class Plans extends Component {
             <Typography variant="h5" className={classes.colorb} style={{padding:'5px'}}>OUR</Typography>
             <Typography variant="h5" className={classes.colr} style={{padding:'5px'}}>PLANS</Typography>
           </Grid>
-          <Grid container direction="row" justify="center" alignItems="center" item xl={9} lg={12} md={12} sm={12} xs={10} >
+          <Grid container direction="row" justify="center" alignItems="center" item xl={8} lg={12} md={12} sm={12} xs={10} >
           <Paper className={classes.paper1}>
             <Grid container spacing={24} >
             <Grid item xl={3} lg={3} md={3} sm={3} xs={12}>

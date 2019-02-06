@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import './forgetpassword.css';
+import './resetpassword.css';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
@@ -93,6 +93,7 @@ const styles = theme => ({
         paddingBottom:'2rem'
     },
     paddingLR :{
+        marginTop: theme.spacing.unit * 5,
         paddingLeft:theme.spacing.unit * 4,
         paddingRight:theme.spacing.unit * 4,
     },
@@ -140,20 +141,24 @@ const styles = theme => ({
     margintop:{
         marginTop:theme.spacing.unit * 3
     },
+    margintopreset:{
+        marginTop:theme.spacing.unit * 2
+    },
     marginsocialLR:{
         marginLeft:theme.spacing.unit * 4,
         marginRight:theme.spacing.unit * 4
     }
 });
 
-class Forgetpassword extends Component {
+class Resetpassword extends Component {
     constructor(props) {
         super(props);
-        document.title = 'NEXGEN | ForgetPassword';
+        document.title = 'NEXGEN | Resetpassword';
         this.state = {
             value: 0,
             formData: {
-                user_email : {value: '', isValid: false, isUntouched: true},
+                user_newpassword : {value: '', isValid: false, isUntouched: true},
+                user_confirmpassword : {value: '', isValid: false, isUntouched: true},
             }
         };
         this.handleChange = this.handleChange.bind(this);
@@ -167,7 +172,7 @@ class Forgetpassword extends Component {
         const target = event.target;
         const name = target.name;
         const value = target.type === 'checkbox' ? target.checked : target.value;
-        const isValid = Forgetpassword.handleValidation(target.name, value);
+        const isValid = Resetpassword.handleValidation(target.name, value);
         let {formData} = this.state;
         formData[name] = {value, isValid};
         this.setState({
@@ -178,15 +183,16 @@ class Forgetpassword extends Component {
         console.log(this.state);
         const { formData } = this.state;
         /* const data = {
-             user_email: formData.user_email.value,
+             user_newpassword: formData.user_newpassword.value,
              company_password: formData.company_password.value,
          };*/
         event.preventDefault();
         axios({
             method: 'post',
-            url: 'http://ci.monetrewards.com:4282/auth/sign_in',
+            url: 'http://ci.monetrewards.com:4282/resetpassword',
             data: {
-                user_email: formData.user_email.value,
+                user_newpassword: formData.user_newpassword.value,
+                user_confirmpassword: formData.user_confirmpassword.value,
             },
             auth: {
                 tokens: { }
@@ -229,8 +235,10 @@ class Forgetpassword extends Component {
     componentDidMount() {}
 
     static handleValidation(type, value) {
-        if (type === 'user_email')
-            return !!value.match(/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,3}$/);
+        if (type === 'user_newpassword' )
+            return value.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&'])[^ ]{8,}$/);
+        else if (type === 'user_confirmpassword')
+            return !!value.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&'])[^ ]{8,}$/);
     }
     render() {
         const { classes } = this.props;
@@ -241,7 +249,7 @@ class Forgetpassword extends Component {
         }
         return (
             <div className="forgetpassword" style={{width:'100%'}}>
-                <title>ForgetPassword</title>
+                <title>ResetPassword</title>
                 <Grid
                     container
                     direction="row"
@@ -250,12 +258,12 @@ class Forgetpassword extends Component {
                     <Grid item xs={12} sm={12} md={12} lg={12} xl={12} className={classes.margintop}>
                         <Typography variant="caption"  className={classes.textTransform} >
                             <Grid container justify="center" alignItems="center" >
-                                <Typography variant="subtitle2"  className={classes.textTransform}>FORGET PASSWORD
+                                <Typography variant="subtitle2"  className={classes.textTransform}>RESET PASSWORD
                                     <Grid container
                                           direction="row"
                                           justify="center"
                                           alignItems="center" item xs={12} sm={12} md={12} lg={12} xl={12}>
-                                    <Divider className={classes.divide}/>
+                                        <Divider className={classes.divide}/>
                                     </Grid>
                                 </Typography>
                             </Grid>
@@ -271,18 +279,31 @@ class Forgetpassword extends Component {
                             alignItems="center"
                         >
                             <div className={classes.margin}>
-                                <FormControl className={classes.formControl} error={!formData.user_email.isValid && !formData.user_email.isUntouched} aria-describedby="user-email-error-text" fullWidth>
+                                <FormControl className={classes.formControl} error={!formData.user_newpassword.isValid && !formData.user_newpassword.isUntouched} aria-describedby="company-newpassword-error-text" fullWidth>
                                     <TextField
                                         fullWidth
                                         className={classes.textField}
-                                        id="user-email-error-text"
-                                        placeholder="Email"
+                                        id="company-newpassword-error-text"
+                                        placeholder="New password"
                                         margin="none"
-                                        autoComplete="Email"
-                                        name="user_email"
+                                        autoComplete="newPassword"
+                                        name="user_newpassword"
                                         onChange={this.handleInputChange}
                                     />
-                                    <FormHelperText id="user-email-error-text" style={{visibility: formData.user_email.isValid || formData.user_email.isUntouched ? 'hidden' : 'visible'}}>Error</FormHelperText>
+                                    <FormHelperText id="company-newpassword-error-text" style={{visibility: formData.user_newpassword.isValid || formData.user_newpassword.isUntouched ? 'hidden' : 'visible'}}>Error</FormHelperText>
+                                </FormControl>
+                                <FormControl className={classes.formControl} error={!formData.user_confirmpassword.isValid && !formData.user_confirmpassword.isUntouched} aria-describedby="company-confirmpassword-error-text" fullWidth>
+                                    <TextField
+                                        fullWidth
+                                        className={classes.textField}
+                                        id="company-confirmpassword-error-text"
+                                        placeholder="Confirm password"
+                                        margin="none"
+                                        autoComplete="confirmPassword"
+                                        name="user_confirmpassword"
+                                        onChange={this.handleInputChange}
+                                    />
+                                    <FormHelperText id="company-confirmpassword-error-text" style={{visibility: formData.user_confirmpassword.isValid || formData.user_confirmpassword.isUntouched ? 'hidden' : 'visible'}}>Error</FormHelperText>
                                 </FormControl>
                             </div>
                         </Grid>
@@ -292,9 +313,9 @@ class Forgetpassword extends Component {
                             justify="center"
                             alignItems="center"
                             item xs={12} sm={12} md={12} lg={12} xl={12} >
-                            <Grid item xs={12} sm={12} md={12} lg={12} xl={12} >
-                                <Button type="submit" variant="contained" component={Link} to="/otp"  className={classes.button} disabled={!isEnabled}> {/*style={{visibility: isEnabled ? 'visible' : 'hidden'}}*/}
-                                   Proceed
+                            <Grid item xs={12} sm={12} md={12} lg={12} xl={12} className={classes.margintopreset}>
+                                <Button type="submit" variant="contained" component={Link} to="/login"  className={classes.button} disabled={!isEnabled}> {/*style={{visibility: isEnabled ? 'visible' : 'hidden'}}*/}
+                                    Reset
                                 </Button>
                             </Grid>
                         </Grid>
@@ -307,7 +328,7 @@ class Forgetpassword extends Component {
                             item xs={12} sm={12} md={12} lg={12} xl={12} >
                             <Grid item xs={12} sm={12} md={12} lg={12} xl={12} className={classes.margintop}>
                                 <Typography variant="caption" component={Link} to="/login"  className={classes.textTransform} >
-                                       Login
+                                    Login
                                 </Typography>
                             </Grid>
                         </Grid>
@@ -317,9 +338,9 @@ class Forgetpassword extends Component {
         );
     }
 }
-Forgetpassword.propTypes = {
+Resetpassword.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
 
-export default withStyles(styles)(Forgetpassword);
+export default withStyles(styles)(Resetpassword);

@@ -3,9 +3,9 @@ exports.register = (req, res) => {
   // Validate request
   console.log(req.body);
   if(!req.body.user_name && !req.body.user_password && !req.body.user_email && !req.body.user_gender && !req.body.user_phone) {
-    return res.status(400).send({
+    /*return res.status(400).send({
       message: "please fill all register entry required"
-    });
+    });*/
   }
 
   // Create a Note

@@ -15,6 +15,7 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from "@material-ui/core/Typography/Typography";
 import Forgetpassword from "../loginsignup/forgetpassword/forgetpassword";
+import Resetpassword from "../loginsignup/resetpassword/resetpassword";
 import Otpverify from "../loginsignup/otpverify/otpverify"
 
 const styles = theme => ({
@@ -187,14 +188,14 @@ class Loginsignup extends Component {
                                           item xs={12} sm={12} md={12} lg={12} xl={12} >
                                                 <div className={classes.paddingLR}>
                                                     <Grid container item xs={12} sm={12} md={12} lg={12} xl={12} >
-                                                        <Tabs
+                                                        {`${this.props.location.pathname}` === '/forgetpassword' || `${this.props.location.pathname}` === '/resetpassword' || `${this.props.location.pathname}` === '/otp' ? '' : <Tabs
                                                             value={value}
                                                             onChange={this.handleChange}
                                                             classes={{ root: classes.tabsRoot, indicator: classes.tabsIndicator }}
                                                         >
                                                             <Tab classes={{ root: classes.tabRoot, selected: classes.tabSelected }} label="LOGIN" component={Link} to="/login" />
                                                             <Tab classes={{ root: classes.tabRoot, selected: classes.tabSelected }} label="SIGN UP" component={Link} to="/signup" />
-                                                        </Tabs>
+                                                        </Tabs>}
                                                     </Grid>
                                                 </div>
                                             </Grid>
@@ -202,6 +203,7 @@ class Loginsignup extends Component {
                                                 <Route  path={`${this.props.match.path}login`} component={Login} />
                                                 <Route path={`${this.props.match.path}signup`} component={Signup} />
                                                 <Route path={`${this.props.match.path}forgetpassword`} component={Forgetpassword} />
+                                                <Route path={`${this.props.match.path}resetpassword`} component={Resetpassword} />
                                                 <Route path={`${this.props.match.path}otp`} component={Otpverify} />
                                                 <Redirect to='/login' />
                                             </Switch>
