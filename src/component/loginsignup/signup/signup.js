@@ -155,9 +155,6 @@ class Signup extends Component {
             },
             single: '',
             popper: '',
-            suggestions: [],
-            password: '',
-            showPassword: false,
             value: '',
             error: null,
             isLoaded: false,
@@ -175,20 +172,20 @@ class Signup extends Component {
             suggestions: [],
         });
     };
-    handleGender = event => {
+   /* handleGender = event => {
         this.setState({ selectedValue: event.target.value });
-    };
-    handleClickShowPassword = () => {
+    };*/
+ /*   handleClickShowPassword = () => {
         this.setState(state => ({ showPassword: !state.showPassword }));
-    };
+    };*/
     handleChange = name => (event, { newValue }) => {
         this.setState({
             [name]: newValue,
         });
     };
-    handleChangepassword = prop => event => {
+   /* handleChangepassword = prop => event => {
         this.setState({ [prop]: event.target.value });
-    };
+    };*/
 
     handleInputChange(event) {
         const target = event.target;
@@ -248,13 +245,19 @@ class Signup extends Component {
             return !!value.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&'])[^ ]{8,}$/);
         else if (type === 'user_phone')
             return (value.length <= 10 && !!value.match(/^[0-9]*$/));
+        else if (type === 'user_gender')
+            return true
     }
     render() {
         const { classes } = this.props;
         const { formData } = this.state;
         let isEnabled = false;
+        const p = [];
         for (let key in formData) {
-            isEnabled = formData[key].isValid;
+            p.push(formData[key].isValid);
+        }
+        if (p.filter((x) => x === false).length < 1) {
+            isEnabled = true;
         }
         return (
             <div className="signup">
@@ -291,7 +294,7 @@ class Signup extends Component {
                                     <Grid item lg={1}/>
                                     <Grid item lg={5}>
                                         <FormControl className={classes.formControl} error={!formData.user_phone.isValid && !formData.user_phone.isUntouched} aria-describedby="user-phone-error-text" fullWidth>
-                                            <Input id="user-phone" name="user_phone" onChange={this.handleInputChange} placeholder="Phone" />
+                                            <Input id="user-phone" name="user_phone" onChange={this.handleInputChange} placeholder="Phone" type="phone"/>
                                             <FormHelperText className={classes.margint} id="user-phone-error-text" style={{visibility: formData.user_phone.isValid || formData.user_phone.isUntouched ? 'hidden' : 'visible'}}>Error</FormHelperText>
                                         </FormControl>
                                     </Grid>
@@ -299,7 +302,7 @@ class Signup extends Component {
                                 </Grid>
 
                                 <FormControl className={classes.formControl} error={!formData.user_password.isValid && !formData.user_password.isUntouched} aria-describedby="user-password-error-text" fullWidth>
-                                    <Input type="password" id="user-password" name="user_password" onChange={this.handleInputChange} placeholder="Password" />
+                                    <Input type="password" id="password" name="user_password" onChange={this.handleInputChange} placeholder="Password" />
                                     <FormHelperText className={classes.margint} id="user-password-error-text" style={{visibility: formData.user_password.isValid || formData.user_password.isUntouched ? 'hidden' : 'visible'}}>Error</FormHelperText>
                                 </FormControl>
 
@@ -310,15 +313,15 @@ class Signup extends Component {
                                         justify="flex-start"
                                         alignItems="center"
                                     >
-                                        <FormLabel component="legend" onChange={this.handleInputChange} id="user-gender" name="user_gender">Gender</FormLabel>
+                                        <FormLabel component="legend" >Gender</FormLabel>
                                         <FormHelperText className={classes.margint} id="user-gender-error-text" style={{visibility: formData.user_gender.isValid || formData.user_gender.isUntouched ? 'hidden' : 'visible'}}>Error</FormHelperText>
                                     </Grid>
 
                                         <RadioGroup
+                                            id="user-gender" name="user_gender"
                                             aria-label="position"
-                                            name="position"
                                             value={this.state.value}
-                                            onChange={this.handlegender}
+                                            onChange={ (e) => { this.handlegender(e); this.handleInputChange(e) } }
                                             row
                                         >
                                             <FormControlLabel

@@ -184,7 +184,7 @@ class Forgetpassword extends Component {
         event.preventDefault();
         axios({
             method: 'post',
-            url: 'http://ci.monetrewards.com:4282/auth/sign_in',
+            url: 'http://localhost:3000/forgetpassword',
             data: {
                 user_email: formData.user_email.value,
             },

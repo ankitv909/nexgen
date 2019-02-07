@@ -145,7 +145,7 @@ const styles = theme => ({
 class Testdescptions extends Component {
     constructor(props) {
         super(props);
-        document.title = 'Test-List';
+        document.title = 'Test-Descptions';
         this.state = {
             checkedB: false,
         };
