@@ -45,7 +45,7 @@ exports.login = (req, res) => {
   exports.findOne = (req, res) => {
     User.findById(req.params.userId)
         .then(user => {
-          if(!user) {
+          if(!req.user_email) {
             return res.status(404).send({
               message: "User not found with id " + req.params.userId
             });
