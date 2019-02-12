@@ -4,12 +4,15 @@ import PropTypes from 'prop-types'
 import { withStyles } from '@material-ui/core/styles'
 import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography/Typography'
-import Avatar from "@material-ui/core/Avatar";
+/*import Avatar from "@material-ui/core/Avatar";*/
 import FormControl from "@material-ui/core/FormControl";
 import RadioGroup from "@material-ui/core/RadioGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Radio from "@material-ui/core/Radio";
+/*
 import Paper from "@material-ui/core/Paper";
+*/
+import Audioplayer from "../../../audio-player/audio-player";
 
 
 const styles = theme => ({
@@ -56,12 +59,18 @@ const styles = theme => ({
     },
     bigAvatar: {
         margin: 10,
-        width: 50,
+        width: 70,
         height: 50,
-        backgroundColor:'#ffffff'
+        backgroundColor:'transparent'
+    },
+    bigAvatar1: {
+        margin: 10,
+        width: 30,
+        height: 30,
+        backgroundColor:'transparent'
     },
     imgres:{
-        width:'40%',
+        width:'100%',
         height:'auto'
     },
     Margin:{
@@ -162,20 +171,23 @@ class Sec1 extends Component {
                         </div>
                     </Grid>
                 </Grid>
-                <Grid
-                  container
-                  direction='row'
-                  justify='flex-start'
-                  alignItems='flex-end' item xs={12} sm={12} md={12} lg={12} xl={12} className={classes.Margin}>
+                {/*<Grid container direction='row' justify='flex-start' alignItems='flex-end' item xs={12} sm={12} md={12} lg={12} xl={12} className={classes.Margin}>
                     <Paper className={classes.paper}>
-                        <Grid container justify="flex-start" alignItems="center">
-                            <Avatar className={classes.bigAvatar} >
-                                <img src="/assets/baseline-settings_voice-24px.svg" alt="baseline" className={classes.imgres}/>
+                        <Grid container justify="center" alignItems="center">
+                            <Avatar className={classes.bigAvatar1}>
+                                <img src="/assets/backword.svg" alt="baseline" className={classes.imgres}/>
                             </Avatar>
-                            <Typography style={{color:'#ffffff'}}>Student Speaking...</Typography>
+                            <Avatar className={classes.bigAvatar} >
+                                <img src="/assets/play.svg" onClick={() => alert('clicked')} alt="baseline" className={classes.imgres}/>
+                            </Avatar>
+                            <Avatar className={classes.bigAvatar1}>
+                                <img src="/assets/forword.svg" alt="baseline" className={classes.imgres}/>
+                            </Avatar>
                         </Grid>
+
                     </Paper>
-                </Grid>
+                </Grid>*/}
+                <Audioplayer source="/assets/audio1.mp3"/>
             </div>
         )
     }

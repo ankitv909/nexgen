@@ -40,25 +40,26 @@ exports.login = (req, res) => {
   const user = new User({
     user_email: req.body.user_email,
     user_password: req.body.user_password,
+
   });
 
   exports.findOne = (req, res) => {
-    User.findById(req.params.userId)
+    User.find(req.body.user_email && !req.body.user_password )
         .then(user => {
-          if(!req.user_email) {
+          if(!req.body.user_email && !req.body.user_password) {
             return res.status(404).send({
-              message: "User not found with id " + req.params.userId
+              message: "User not found with id " + req.body.user_email +req.body.user_password
             });
           }
           res.send(user);
         }).catch(err => {
       if(err.kind === 'ObjectId') {
         return res.status(404).send({
-          message: "User not found with id " + req.params.userId
+          message: "User not found with id " + /*req.params.userId*/ req.body.user_email +req.body.user_password
         });
       }
       return res.status(500).send({
-        message: "Error retrieving user with id " + req.params.userId
+        message: "Error retrieving user with id " + /*req.params.userId*/req.body.user_email +req.body.user_password
       });
     });
   };

@@ -197,9 +197,7 @@ class Login extends Component {
           user_email: formData.user_email.value,
           user_password: formData.user_password.value,
         }
-      })
-        .then(res => res.json().then(user => ({ formData, res })))
-        .then(({ formdata, res }) =>  {
+      }).then(res => res.json().then(user => ({ formData, res }))).then(({ formdata, res }) =>  {
           if (!res.ok) {
             // If there was a problem, we want to
             // dispatch the error condition
