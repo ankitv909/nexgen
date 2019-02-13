@@ -62,8 +62,10 @@ class Progressbar extends Component {
         const left = (event.pageX - offset.left);
         const totalWidth = this.outerProgress.current.scrollWidth;
         const percentage = (left / totalWidth);
-        this.props.timeUpdateOnSeek(totalTime * percentage);
-        this.setState({time: totalTime * percentage});
+        if (type === 'click' || type === 'move') {
+            this.setState({time: totalTime * percentage});
+            this.props.timeUpdateOnSeek(totalTime * percentage);
+        }
     };
 
     render() {
@@ -75,7 +77,8 @@ class Progressbar extends Component {
             <div className='progress-bar' style={{width: '100%'}}>
                 <Tooltip title={this.convertTime(time)} placement="bottom">
                     <div className={classes.progress} ref={this.outerProgress}
-                         onClick={(e) => this.getCurrentTime(e, 'click')}>
+                         onClick={(e) => this.getCurrentTime(e, 'click')}
+                         onMouseMove={(e) => this.getCurrentTime(e, 'tooltip')}>
                         <div className={classes.innerprogress}
                              style={{width: this.calculatePercentage(currentTime, totalTime) + '%'}}
                              ref={this.innerProgress}>

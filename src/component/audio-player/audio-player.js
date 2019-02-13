@@ -7,6 +7,7 @@ import Paper from "@material-ui/core/Paper";
 import Avatar from "@material-ui/core/Avatar";
 import {Typography} from "@material-ui/core";
 import Progressbar from "./progress-bar/progress-bar";
+import Volume from "./volume/volume";
 
 
 const styles = theme => ({
@@ -114,15 +115,14 @@ class Audioplayer extends Component {
         }
     }
 
-    handleChange = event => {
-        this.setState({value: event.target.value});
-    };
     handlePause = () => {
         this.audioRef.current.pause();
-        this.setState({playerState: 'pause'});
+        this.audioRef.current.currentTime = this.state.currentTime;
+        this.setState({playerState: 'pause',});
     };
     handlePlay = () => {
         this.audioRef.current.play();
+        this.audioRef.current.currentTime = this.state.currentTime;
         this.setState({playerState: 'play'});
     };
     handleAudioPlay = () => {
@@ -151,9 +151,10 @@ class Audioplayer extends Component {
         }
     };
     handleVolume = () => {
-        this.audioRef.current.volume();
-        console.log(this.audioRef.current.volume);
-        this.setState({playerState: 'play'})
+        if (this.audioRef.current) {
+            // this.audioRef.current.volume;
+            console.log(this.audioRef.current.volume);
+        }
     };
     getCurrentTime = () => {
         if (this.audioRef.current) {
@@ -173,7 +174,8 @@ class Audioplayer extends Component {
     render() {
         const {classes} = this.props;
         const {source} = this.props;
-        const {playerState, currentTime, totalTime} = this.state;
+        const {playerState, currentTime, totalTime, progress} = this.state;
+        this.handleVolume();
 
         return (
             <div className='audio-player' style={{width: '100%'}}>
@@ -205,25 +207,29 @@ class Audioplayer extends Component {
                             </Grid>
                         </Grid>
 
-                        <Grid container justify="center" alignItems="center">
-                            <Avatar className={classes.bigAvatar1}>
+                        <Grid container justify="center" alignItems="center" direction="row" item xl={12} md={12} sm={12} lg={12} xs={12}>
+                            <Grid container justify="flex-end" alignItems="center" direction="row" item xl={7} md={7} sm={6} lg={6} xs={6}>
+                                <Avatar className={classes.bigAvatar1}>
                                 <img src="/assets/backword.svg" onClick={() => this.handleSeek('backward', 5)}
                                      alt="baseline" className={classes.imgres}/>
                             </Avatar>
-                            <Avatar className={classes.bigAvatar}>
-                                {playerState === 'play' ?
-                                    <img src="/assets/pauseuser.svg" onClick={this.handlePause} alt="baseline"
-                                         className={classes.imgres}/>
-                                    : playerState === 'pause' ?
-                                        <img src="/assets/play.svg" onClick={this.handlePlay} alt="baseline"
-                                             className={classes.imgres}/> : ''}
-                            </Avatar>
-                            <Avatar className={classes.bigAvatar1}>
-                                <img src="/assets/forword.svg" onClick={() => this.handleSeek('forward', 5)}
-                                     alt="baseline" className={classes.imgres}/>
-                            </Avatar>
-                        </Grid>
+                                <Avatar className={classes.bigAvatar}>
+                                    {playerState === 'play' ?
+                                        <img src="/assets/pauseuser.svg" onClick={this.handlePause} alt="baseline"
+                                             className={classes.imgres}/>
+                                        : playerState === 'pause' ?
+                                            <img src="/assets/play.svg" onClick={this.handlePlay} alt="baseline"
+                                                 className={classes.imgres}/> : ''}
+                                </Avatar>
+                                <Avatar className={classes.bigAvatar1}>
+                                    <img src="/assets/forword.svg" onClick={() => this.handleSeek('forward', 5)}
+                                         alt="baseline" className={classes.imgres}/>
+                                </Avatar></Grid>
+                            <Grid container justify="flex-end" alignItems="center" direction="row" item xl={5} md={3} sm={2} lg={4} xs={6}>
+                                <Volume progress={progress}/>
+                            </Grid>
 
+                        </Grid>
                     </Paper>
                 </Grid>
             </div>
