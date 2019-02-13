@@ -1,4 +1,9 @@
-<svg id="baseline-volume_mute-24px" xmlns="http://www.w3.org/2000/svg" width="35.17" height="35.17" viewBox="0 0 35.17 35.17">
-  <path id="Path_1864" data-name="Path 1864" d="M7,11.327v8.792h5.862l7.327,7.327V4l-7.327,7.327Z" transform="translate(3.258 1.862)" fill="#fff"/>
-  <path id="Path_1865" data-name="Path 1865" d="M0,0H35.17V35.17H0Z" fill="none"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="32.889" height="32.889" viewBox="0 0 32.889 32.889">
+  <g id="Group_91" data-name="Group 91" transform="translate(-1228 -1022)">
+    <g id="baseline-volume_up-24px" transform="translate(1228 1022)">
+      <path id="Path_23" data-name="Path 23" d="M3,11.137v8.222H8.482l6.852,6.852V4.285L8.482,11.137Zm18.5,4.111a6.167,6.167,0,0,0-3.426-5.523V20.757A6.131,6.131,0,0,0,21.5,15.248ZM18.074,3.23V6.053a9.6,9.6,0,0,1,0,18.39v2.823a12.325,12.325,0,0,0,0-24.036Z" transform="translate(1.111 1.196)" fill="#fff"/>
+      <path id="Path_24" data-name="Path 24" d="M0,0H32.889V32.889H0Z" fill="none"/>
+    </g>
+    <rect id="Rectangle_220" data-name="Rectangle 220" width="3" height="33" transform="translate(1231.772 1027.893) rotate(-45)" fill="#fff"/>
+  </g>
 </svg>

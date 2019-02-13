@@ -25,7 +25,8 @@ const styles = theme => ({
         top: -8,
         width: 26,
         backgroundColor: '#F8A662',
-        boxShadow: '0px 0px 0px 1px #827d7d6b'
+        boxShadow: '0px 0px 0px 1px #827d7d6b',
+        cursor: 'grab'
     }
 });
 
@@ -82,7 +83,7 @@ class Progressbar extends Component {
                         <div className={classes.innerprogress}
                              style={{width: this.calculatePercentage(currentTime, totalTime) + '%'}}
                              ref={this.innerProgress}>
-                            <div className={classes.circle} onDragEnd={(e) => this.getCurrentTime(e, 'move')}></div>
+                            <div className={classes.circle} draggable={true} onDrag={(e) => this.getCurrentTime(e, 'move')} onDragEnd={(e) => this.getCurrentTime(e, 'move')}> </div>
                         </div>
                     </div>
                 </Tooltip>

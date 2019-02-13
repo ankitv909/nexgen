@@ -111,7 +111,9 @@ class Audioplayer extends Component {
         this.state = {
             playerState: 'pause',
             currentTime: 0,
-            totalTime: 0
+            totalTime: 0,
+            volume: 0,
+            muted: true
         }
     }
 
@@ -152,8 +154,11 @@ class Audioplayer extends Component {
     };
     handleVolume = () => {
         if (this.audioRef.current) {
-            // this.audioRef.current.volume;
-            console.log(this.audioRef.current.volume);
+            if (this.audioRef.current.muted) {
+                this.setState({volume: 0, muted: this.audioRef.current.muted});
+            } else {
+                this.setState({volume: this.audioRef.current.volume, muted: this.audioRef.current.muted});
+            }
         }
     };
     getCurrentTime = () => {
@@ -174,16 +179,17 @@ class Audioplayer extends Component {
     render() {
         const {classes} = this.props;
         const {source} = this.props;
-        const {playerState, currentTime, totalTime, progress} = this.state;
-        this.handleVolume();
-
+        const {playerState, currentTime, totalTime, volume, muted} = this.state;
         return (
             <div className='audio-player' style={{width: '100%'}}>
                 <Grid container direction='row' justify='flex-start' alignItems='flex-end' item xs={12} sm={12} md={12}
                       lg={12} xl={12} className={classes.Margin}>
                     <Paper className={classes.paper}>
                         <audio ref={this.audioRef} controls onCanPlay={this.getTotalTime}
-                               onTimeUpdate={this.handleAudioPlay}>
+                               onTimeUpdate={this.handleAudioPlay}
+                               onVolumeChange={this.handleVolume}
+                               muted={muted}
+                        >
                             <source src={source} type="audio/ogg"/>
                             <source src={source} type="audio/mpeg"/>
                             Your browser does not support the audio element
@@ -226,7 +232,7 @@ class Audioplayer extends Component {
                                          alt="baseline" className={classes.imgres}/>
                                 </Avatar></Grid>
                             <Grid container justify="flex-end" alignItems="center" direction="row" item xl={5} md={3} sm={2} lg={4} xs={6}>
-                                <Volume progress={progress}/>
+                                <Volume progress={volume * 100} muteState={muted}/>
                             </Grid>
 
                         </Grid>
