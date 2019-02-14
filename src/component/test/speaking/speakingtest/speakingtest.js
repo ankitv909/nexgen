@@ -41,10 +41,10 @@ const styles = theme => ({
 
     },
     paper:{
-        paddingLeft: theme.spacing.unit * 0,
-        paddingRight: theme.spacing.unit * 0,
-        paddingTop: theme.spacing.unit * 0,
-        paddingBottom: theme.spacing.unit * 0,
+        paddingLeft: 0,
+        paddingRight: 0,
+        paddingTop: 0,
+        paddingBottom: 0,
         width:'100%',
         borderRadius: 0,
         backgroundColor:'#e5e6e878',
@@ -109,7 +109,7 @@ const styles = theme => ({
         height:'auto'
     },
     imgres:{
-        width:'100%',
+        width:'85%',
         height:'auto'
     },
     imgres1:{
@@ -179,16 +179,20 @@ const styles = theme => ({
         marginBottom:theme.spacing.unit,
     },
     badge: {
+        borderRadius:24,
         border: '4px solid #E5E6E8',
         backgroundColor:'#ffffff',
         color:'#6B7678',
         position:'static',
-        height:36,
-        width:36
+        height:45,
+        width:45
     },
     marginlr:{
         marginLeft: theme.spacing.unit * 3,
         marginRight: theme.spacing.unit * 3,
+    },
+    margintop38:{
+        marginTop:-38
     }
 });
 
@@ -223,7 +227,7 @@ class Speakingtest extends Component {
             clearInterval(this.intervalId);
         }
         this.setState({
-            maximumTime: this.state.maximumTime - 1 })
+            maximumTime: this.state.maximumTime - 1 });
         localStorage.setItem('remTime', this.state.maximumTime)
     }
     componentDidMount() {
@@ -319,43 +323,43 @@ class Speakingtest extends Component {
                         <Grid container direction="row" justify="center" alignItems="center" item xs={3} lg={3} md={3} sm={3} xl={3} className={classes.Margin1}>
                             <Paper className={classes.paper3}>
                                 <Grid container direction="column"  justify="center" alignItems="center" item xs={12} lg={12} md={12} sm={12} xl={12} className={classes.Margin2}>
-                                    <Grid container direction="row"  justify="center" alignItems="center" item xs={2} lg={8} md={12} sm={12} xl={7} spacing={16}>
-                                        <Grid container justify="center" alignItems="center" item xs={2} lg={3} md={2} sm={3} xl={3}>
+                                    <Grid container direction="row"  justify="center" alignItems="center" item xs={2} lg={8} md={9} sm={10} xl={7} spacing={16}>
+                                        <Grid container justify="center" alignItems="center" item xs={2} lg={4} md={5} sm={4} xl={3}>
                                             <img src="/assets/timer.svg" alt="thumb" className={classes.imgres}/>
                                         </Grid>
-                                        <Grid container justify="flex-start" alignItems="center" item xs={2} lg={4} md={3} sm={4} xl={3}>
+                                        <Grid container justify="flex-start" alignItems="center" item xs={2} lg={4} md={4} sm={4} xl={3}>
                                             <Typography variant="subtitle1"  className={classes.colr}>{this.secToMinutes(this.state.maximumTime)}</Typography>
                                         </Grid>
                                     </Grid>
                                 </Grid>
 
                                 <Grid container direction="column"  justify="center" alignItems="center" item xs={12} lg={12} md={12} sm={12} xl={12} className={classes.Margin3}>
-                                    <Grid container direction="row"  justify="center" alignItems="center" item xs={2} lg={8} md={12} sm={12} xl={8} className={classes.marginbtm} spacing={16}>
-                                        <Grid container justify="center" alignItems="center" item xs={2} lg={3} md={2} sm={3} xl={3}>
+                                    <Grid container direction="row"  justify="center" alignItems="center" item xs={2} lg={10} md={12} sm={12} xl={8} className={classes.marginbtm} spacing={16}>
+                                        <Grid container justify="center" alignItems="center" item xs={2} lg={5} md={6} sm={6} xl={4}>
                                             <Badge classes={{ badge: classes.badge }} badgeContent="0%" color="primary">
                                             </Badge>
                                         </Grid>
-                                        <Grid container justify="flex-start" alignItems="center" item xs={2} lg={4} md={3} sm={4} xl={3}>
-                                            <Typography variant="subtitle1"  className={classes.color} >Part I</Typography>
+                                        <Grid container justify="flex-start" alignItems="center" item xs={2} lg={5} md={5} sm={6} xl={4}>
+                                            <Typography variant="subtitle1"  className={`${classes.color} ${classes.margintop38}`} >Part I</Typography>
                                         </Grid>
                                     </Grid>
-                                    <Grid container direction="row"  justify="center" alignItems="center" item xs={2} lg={8} md={12} sm={12} xl={8} className={classes.marginbtm} spacing={16}>
-                                        <Grid container justify="center" alignItems="center" item xs={2} lg={3} md={2} sm={3} xl={3}>
+                                    <Grid container direction="row"  justify="center" alignItems="center" item xs={2} lg={10} md={12} sm={12} xl={8} className={classes.marginbtm} spacing={16}>
+                                        <Grid container justify="center" alignItems="center" item xs={2} lg={5} md={6} sm={6} xl={4}>
                                             {/*<img src="/assets/Path 48.svg" alt="thumb" className={classes.imgres1}/>*/}
                                             <Badge classes={{ badge: classes.badge }} badgeContent="0%" color="primary">
                                             </Badge>
                                         </Grid>
-                                        <Grid container justify="flex-start" alignItems="center" item xs={2} lg={4} md={3} sm={4} xl={3}>
-                                            <Typography variant="subtitle1"  className={classes.color} >Part II</Typography>
+                                        <Grid container justify="flex-start" alignItems="center" item xs={2} lg={5} md={5} sm={6} xl={4}>
+                                            <Typography variant="subtitle1"  className={`${classes.color} ${classes.margintop38}`} >Part II</Typography>
                                         </Grid>
                                     </Grid>
-                                    <Grid container direction="row"  justify="center" alignItems="center" item xs={2} lg={8} md={12} sm={12} xl={8} className={classes.marginbtm} spacing={16}>
-                                        <Grid container justify="center" alignItems="center" item xs={2} lg={3} md={2} sm={3} xl={3}>
+                                    <Grid container direction="row"  justify="center" alignItems="center" item xs={2} lg={10} md={12} sm={12} xl={8} className={classes.marginbtm} spacing={16}>
+                                        <Grid container justify="center" alignItems="center" item xs={2} lg={5} md={6} sm={6} xl={4}>
                                             <Badge classes={{ badge: classes.badge }} badgeContent="0%" color="primary">
                                             </Badge>
                                         </Grid>
-                                        <Grid container justify="flex-start" alignItems="center" item xs={2} lg={4} md={3} sm={4} xl={3}>
-                                            <Typography variant="subtitle1"  className={classes.color} >Part III</Typography>
+                                        <Grid container justify="flex-start" alignItems="center" item xs={2} lg={5} md={5} sm={6} xl={4}>
+                                            <Typography variant="subtitle1"  className={`${classes.color} ${classes.margintop38}`} >Part III</Typography>
                                         </Grid>
                                     </Grid>
                                 </Grid>

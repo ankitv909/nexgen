@@ -59,6 +59,7 @@ const styles = theme => ({
     paper2:{
         paddingTop: 0,
         paddingBottom:0,
+        marginBottom:theme.spacing.unit * 2,
         width:'100%',
         borderRadius: 0,
         backgroundColor:'#ffffff',
@@ -68,6 +69,7 @@ const styles = theme => ({
     paper3:{
         paddingTop: 0,
         paddingBottom: 0,
+        marginBottom:theme.spacing.unit * 2,
         width:'100%',
         borderRadius: 0,
         backgroundColor:'#ffffff',
@@ -139,10 +141,10 @@ class Testlist extends Component {
                         <Grid container direction="row" justify="center" alignItems="center" item xs={8} lg={8} md={8} sm={8} xl={8}>
                             <Paper className={classes.paper2}>
                                 <Grid container direction="row"  item xs={12} lg={12} md={12} sm={12} xl={12} >
-                                    <Grid container direction="row" justify="flex-start" alignItems="flex-start"  item xs={8} lg={2} md={3} sm={4} xl={3}>
+                                    <Grid container direction="row" justify="flex-start" alignItems="flex-start"  item xs={8} lg={2} md={3} sm={4} xl={2}>
                                        <img src="/assets/thumb.svg" alt="thumb" className={classes.imgresponsive}/>
                                     </Grid>
-                                    <Grid container direction="column" justify="space-around" alignItems="flex-start" item xs={8} lg={6} md={6} sm={5} xl={6}>
+                                    <Grid container direction="column" justify="space-around" alignItems="flex-start" item xs={8} lg={6} md={6} sm={5} xl={7}>
                                         <div>
                                         <Typography className={classes.colr}>IELTS Recent Actual Test With Answers (Vol 4)</Typography>
                                         <Typography className={classes.color}>4.2 (320 Votes)</Typography>
@@ -163,8 +165,56 @@ class Testlist extends Component {
                                     </Grid>
                                     </Grid>
                             </Paper>
+                            <Paper className={classes.paper2}>
+                                <Grid container direction="row"  item xs={12} lg={12} md={12} sm={12} xl={12} >
+                                    <Grid container direction="row" justify="flex-start" alignItems="flex-start"  item xs={8} lg={2} md={3} sm={4} xl={2}>
+                                        <img src="/assets/thumb.svg" alt="thumb" className={classes.imgresponsive}/>
+                                    </Grid>
+                                    <Grid container direction="column" justify="space-around" alignItems="flex-start" item xs={8} lg={6} md={6} sm={5} xl={7}>
+                                        <div>
+                                            <Typography className={classes.colr}>IELTS Recent Actual Test With Answers (Vol 4)</Typography>
+                                            <Typography className={classes.color}>4.2 (320 Votes)</Typography>
+                                        </div>
+                                        <div >
+                                            <Typography variant="caption" className={classes.color}>Test Taken: 20198</Typography>
+                                        </div>
+                                    </Grid>
+                                    <Grid container direction="column" justify="space-around" alignItems="flex-end" item xs={8} lg={4} md={3} sm={3} xl={3}>
+                                        <div style={{paddingRight:'8px'}}>
+                                            <Typography className={classes.colr}>Published: 20 July, 2018</Typography>
+                                        </div>
+                                        <div style={{paddingRight:'8px'}}>
+                                            <Button  variant="contained" color="primary" component={Link} to="/testdescptions" className={classes.viewButton}>
+                                                View
+                                            </Button>
+                                        </div>
+                                    </Grid>
+                                </Grid>
+                            </Paper>
                         </Grid>
                         <Grid container direction="row" justify="center" alignItems="center" item xs={3} lg={3} md={3} sm={3} xl={3}>
+                            <Paper className={classes.paper3}>
+                                <Grid container direction="row"  item xs={12} lg={12} md={12} sm={12} xl={12} >
+                                    <Grid container direction="row" justify="flex-start" alignItems="flex-start"  item xs={8} lg={3} md={3} sm={4} xl={3}>
+                                        <img src="/assets/amlogo.svg" alt="thumb" className={classes.imgres}/>
+                                    </Grid>
+                                    <Grid container direction="column" justify="space-around" alignItems="flex-start" item xs={8} lg={9} md={9} sm={8} xl={9}>
+                                        <div style={{paddingLeft:'8px'}}>
+                                            <Typography className={classes.colr} style={{marginTop: '0.35em'}}>IELTS Recent Actual Test With Answers (Vol 4)</Typography>
+                                        </div>
+                                        <Grid container direction="row" justify="flex-end" alignItems="center">
+                                            <div style={{paddingRight:'8px'}}>
+                                                <Typography variant="caption" className={classes.color} >4.2 </Typography>
+                                                <Typography variant="caption" className={classes.color}>4.2 (320 Votes)</Typography>
+                                            </div>
+                                        </Grid>
+
+                                        <div >
+                                            <Typography style={{paddingLeft:'8px'}} variant="caption" className={classes.color} gutterBottom>Test Taken: 20198</Typography>
+                                        </div>
+                                    </Grid>
+                                </Grid>
+                            </Paper>
                             <Paper className={classes.paper3}>
                                 <Grid container direction="row"  item xs={12} lg={12} md={12} sm={12} xl={12} >
                                     <Grid container direction="row" justify="flex-start" alignItems="flex-start"  item xs={8} lg={3} md={3} sm={4} xl={3}>

@@ -37,7 +37,6 @@ class Volume extends Component {
     };
 
 
-
     render() {
         const {classes, progress, muteState} = this.props;
         return (
@@ -45,14 +44,14 @@ class Volume extends Component {
                 <Grid container direction="row" justify="flex-end" alignItems="center">
                     <Grid container justify="flex-end" item xl={4} lg={4} md={4} sm={4}>
                         {muteState === true ?
-                            <img src="/assets/mute.svg" alt="baseline"  className={classes.imgres}/>
+                            <img src="/assets/mute.svg" alt="baseline" className={classes.imgres}/>
                             : muteState === false ?
                                 <img src="/assets/volume.svg" onClick={this.handleVolume} alt="baseline"
                                      className={classes.imgres}/> : ''}
                         </Grid>
                     <Grid container justify="flex-end" item xl={2} lg={3} md={4} sm={6}>
                         <div className={classes.progress}><div className={classes.innerprogress} style={{width: progress + '%'}}>
-                            <div className={classes.circle} ></div>
+                            <div className={classes.circle} draggable={true}></div>
                         </div>
                         </div>
                     </Grid>

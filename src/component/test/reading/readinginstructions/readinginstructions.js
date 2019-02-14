@@ -119,6 +119,9 @@ const styles = theme => ({
   paddingleft24:{
     paddingLeft:theme.spacing.unit * 3
   },
+  paddingleft64:{
+    paddingLeft:theme.spacing.unit * 8
+  },
   marginLeft:{
     marginLeft:theme.spacing.unit
   },
@@ -165,7 +168,7 @@ class Readinginstructions extends Component {
                     <li className={`${classes.color} ${classes.margin24}`}> <Typography variant="subtitle1" className={`${classes.color} ${classes.paddingleft24}`}>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore.Lorem ipsum dolor sit amet, consetetur</Typography> </li>
                   </ul>
                 </Grid>
-                <Grid container direction="row" justify="flex-start" alignItems="center" className={`${classes.paddingleft24} ${classes.margin24}`}>
+                <Grid container direction="row" justify="flex-start" alignItems="center" className={`${classes.paddingleft64} ${classes.margin24}`}>
                   <FormControlLabel
                     control={
                       <Checkbox
