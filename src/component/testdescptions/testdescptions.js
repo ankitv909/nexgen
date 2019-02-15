@@ -241,9 +241,11 @@ class Testdescptions extends Component {
                                         <img src="/assets/amlogo.svg" alt="thumb" className={classes.imgres}/>
                                     </Grid>
                                     <Grid container direction="row" justify="space-around" alignItems="flex-start" item xs={8} lg={9} md={9} sm={8} xl={9}>
-                                        <div style={{paddingLeft:'0px'}}>
-                                            <Typography className={classes.colr} style={{marginTop: '0.35em',fontSize:'0.72rem'}} gutterBottom>IELTS Recent Actual Test With Answers (Vol 4)</Typography>
+                                        <Grid container direction="row" justify="flex-start" alignItems="flex-start" >
+                                        <div style={{paddingLeft:'8px'}}>
+                                            <Typography className={classes.colr} style={{marginTop: '0.35em',}} gutterBottom>IELTS Recent Actual Test With Answers (Vol 4)</Typography>
                                         </div>
+                                        </Grid>
                                         <Grid item lg={6} container direction="column" justify="flex-start" alignItems="flex-start">
                                             <div style={{paddingLeft:'8px'}}>
                                                 <Typography variant="caption" className={classes.color} gutterBottom>Time: 30 Minutes</Typography>
