@@ -7,6 +7,7 @@ import Typography from "@material-ui/core/Typography/Typography";
 import Paper from "@material-ui/core/Paper";
 import Button from "@material-ui/core/Button";
 import {Link} from "react-router-dom";
+import Rating from "../rating/rating";
 
 
 function TabContainer({ children, dir }) {
@@ -116,7 +117,9 @@ class Testlist extends Component {
 
         };
     }
-
+    onStarClick(nextValue, prevValue, name) {
+        this.setState({rating: nextValue});
+    }
     render() {
         const { classes } = this.props;
         return (
@@ -147,7 +150,20 @@ class Testlist extends Component {
                                     <Grid container direction="column" justify="space-around" alignItems="flex-start" item xs={8} lg={6} md={6} sm={5} xl={7}>
                                         <div>
                                         <Typography className={classes.colr}>IELTS Recent Actual Test With Answers (Vol 4)</Typography>
-                                        <Typography className={classes.color}>4.2 (320 Votes)</Typography>
+                                        <Typography className={classes.color} style={{display:'inline-flex'}}>4.2 </Typography>
+                                            <Rating/>
+                                           {/* <Rating {...{
+                                                className: `html-entities-rating`,
+                                                value: rating,
+                                                allowHalfs:false,
+                                                maxValue:5,
+                                                disabled:false,
+                                                starCount:5,
+                                                activeIcon: <span>&#9733;</span>, // https://www.toptal.com/designers/htmlarrows/symbols/black-star/
+                                                inactiveIcon: <span>&#9734;</span>, // https://www.toptal.com/designers/htmlarrows/symbols/white-star/
+                                                onSelect: rating => this.setState({ rating })
+                                            }} />*/}
+                                        <Typography className={classes.color} style={{display:'inline-flex'}}>(320 Votes)</Typography>
                                         </div>
                                         <div >
                                         <Typography variant="caption" className={classes.color}>Test Taken: 20198</Typography>
@@ -173,7 +189,20 @@ class Testlist extends Component {
                                     <Grid container direction="column" justify="space-around" alignItems="flex-start" item xs={8} lg={6} md={6} sm={5} xl={7}>
                                         <div>
                                             <Typography className={classes.colr}>IELTS Recent Actual Test With Answers (Vol 4)</Typography>
-                                            <Typography className={classes.color}>4.2 (320 Votes)</Typography>
+                                            <Typography className={classes.color} style={{display:'inline-flex'}}>4.2 </Typography>
+                                            <Rating/>
+                                            {/* <Rating {...{
+                                                className: `html-entities-rating`,
+                                                value: rating,
+                                                allowHalfs:false,
+                                                maxValue:5,
+                                                disabled:false,
+                                                starCount:5,
+                                                activeIcon: <span>&#9733;</span>, // https://www.toptal.com/designers/htmlarrows/symbols/black-star/
+                                                inactiveIcon: <span>&#9734;</span>, // https://www.toptal.com/designers/htmlarrows/symbols/white-star/
+                                                onSelect: rating => this.setState({ rating })
+                                            }} />*/}
+                                            <Typography className={classes.color} style={{display:'inline-flex'}}>(320 Votes)</Typography>
                                         </div>
                                         <div >
                                             <Typography variant="caption" className={classes.color}>Test Taken: 20198</Typography>
@@ -202,16 +231,15 @@ class Testlist extends Component {
                                         <div style={{paddingLeft:'8px'}}>
                                             <Typography className={classes.colr} style={{marginTop: '0.35em'}}>IELTS Recent Actual Test With Answers (Vol 4)</Typography>
                                         </div>
-                                        <Grid container direction="row" justify="flex-end" alignItems="center">
-                                            <div style={{paddingRight:'8px'}}>
-                                                <Typography variant="caption" className={classes.color} >4.2 </Typography>
-                                                <Typography variant="caption" className={classes.color}>4.2 (320 Votes)</Typography>
-                                            </div>
+                                        <Grid container direction="row" justify="flex-start" alignItems="flex-end">
+                                            <Grid container justify="flex-start" alignItems="center" item xs={8} lg={7} md={5} sm={12} xl={8}>
+                                                <Typography style={{paddingLeft:'8px'}} variant="caption" className={classes.color} gutterBottom>Test Taken: 20198</Typography>
+                                            </Grid>
+                                            <Grid container direction="column" justify="center" style={{paddingLeft:'8px'}} alignItems="flex-start" item xs={8} lg={5} md={7} sm={12} xl={4} >
+                                                <Typography variant="caption" className={classes.color}>4.2 <Rating/></Typography>
+                                                <Typography variant="caption" className={classes.color}gutterBottom>(320 Votes)</Typography>
+                                            </Grid>
                                         </Grid>
-
-                                        <div >
-                                            <Typography style={{paddingLeft:'8px'}} variant="caption" className={classes.color} gutterBottom>Test Taken: 20198</Typography>
-                                        </div>
                                     </Grid>
                                 </Grid>
                             </Paper>
@@ -224,16 +252,15 @@ class Testlist extends Component {
                                         <div style={{paddingLeft:'8px'}}>
                                             <Typography className={classes.colr} style={{marginTop: '0.35em'}}>IELTS Recent Actual Test With Answers (Vol 4)</Typography>
                                         </div>
-                                        <Grid container direction="row" justify="flex-end" alignItems="center">
-                                            <div style={{paddingRight:'8px'}}>
-                                                <Typography variant="caption" className={classes.color} >4.2 </Typography>
-                                                <Typography variant="caption" className={classes.color}>4.2 (320 Votes)</Typography>
-                                            </div>
+                                        <Grid container direction="row" justify="flex-start" alignItems="flex-end">
+                                            <Grid container justify="flex-start" alignItems="center" item xs={8} lg={7} md={5} sm={12} xl={8}>
+                                                <Typography style={{paddingLeft:'8px'}} variant="caption" className={classes.color} >Test Taken: 20198</Typography>
+                                            </Grid>
+                                            <Grid container direction="column" justify="center" style={{paddingLeft:'8px'}} alignItems="flex-start" item xs={8} lg={5} md={7} sm={12} xl={4} >
+                                                <Typography variant="caption" className={classes.color}>4.2 <Rating/></Typography>
+                                                <Typography variant="caption" className={classes.color}>(320 Votes)</Typography>
+                                            </Grid>
                                         </Grid>
-
-                                        <div >
-                                            <Typography style={{paddingLeft:'8px'}} variant="caption" className={classes.color} gutterBottom>Test Taken: 20198</Typography>
-                                        </div>
                                     </Grid>
                                 </Grid>
                             </Paper>

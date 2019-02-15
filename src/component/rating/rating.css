@@ -1,0 +1,15 @@
+.rating {
+    text-align: center;
+    display: inline-flex;
+    max-width: 70%;
+}
+.react-rater-star.is-active {
+    color: #707070 !important;
+}
+.react-rater {
+    font-size: 16px;
+    margin-left: 8px;
+    display: inline-flex !important;
+    line-height: normal;
+    margin-right: 8px;
+}
