@@ -19,7 +19,7 @@ const styles = theme => ({
         paddingTop: '2rem'
     },
     margintop: {
-        marginTop: theme.spacing.unit * 3
+        marginTop: theme.spacing.unit * 3,
     },
     marginsocialLR: {
         marginLeft: theme.spacing.unit * 4,
@@ -94,13 +94,17 @@ const styles = theme => ({
         paddingLeft: theme.spacing.unit * 3
     },
     marginTop: {
-        marginTop: 10
+        marginTop: 10,
+        marginBottom:-24,
     },
     paddingleft: {
         paddingLeft: theme.spacing.unit * 2,
     },
     paddingRight: {
         paddingRight: theme.spacing.unit * 2
+    },
+    margin24:{
+        marginTop:theme.spacing.unit * 2
     }
 });
 
@@ -189,12 +193,12 @@ class Audioplayer extends Component {
                                onTimeUpdate={this.handleAudioPlay}
                                onVolumeChange={this.handleVolume}
                                muted={muted}
-                        >
+                        style={{display:'none'}}>
                             <source src={source} type="audio/ogg"/>
                             <source src={source} type="audio/mpeg"/>
                             Your browser does not support the audio element
                         </audio>
-                        <Grid container item lg={12} xl={12} sm={12} md={12} xs={12}>
+                        <Grid container item lg={12} xl={12} sm={12} md={12} xs={12} className={classes.margin24}>
                             <Progressbar currentTime={currentTime} totalTime={totalTime} timeUpdateOnSeek={this.timeUpdateOnSeek}/>
                         </Grid>
                         <Grid container direction='row' justify='center' alignItems='center' item xs={12} sm={12}
@@ -214,7 +218,7 @@ class Audioplayer extends Component {
                         </Grid>
 
                         <Grid container justify="center" alignItems="center" direction="row" item xl={12} md={12} sm={12} lg={12} xs={12}>
-                            <Grid container justify="flex-end" alignItems="center" direction="row" item xl={7} md={7} sm={6} lg={6} xs={6}>
+                            <Grid container justify="flex-end" alignItems="center" direction="row" item xl={7} md={7} sm={8} lg={7} xs={6}>
                                 <Avatar className={classes.bigAvatar1}>
                                 <img src="/assets/backword.svg" onClick={() => this.handleSeek('backward', 5)}
                                      alt="baseline" className={classes.imgres}/>
@@ -230,8 +234,9 @@ class Audioplayer extends Component {
                                 <Avatar className={classes.bigAvatar1}>
                                     <img src="/assets/forword.svg" onClick={() => this.handleSeek('forward', 5)}
                                          alt="baseline" className={classes.imgres}/>
-                                </Avatar></Grid>
-                            <Grid container justify="flex-end" alignItems="center" direction="row" item xl={5} md={3} sm={2} lg={4} xs={6}>
+                                </Avatar>
+                            </Grid>
+                            <Grid container justify="flex-end" alignItems="center" direction="row" item xl={5} md={5} sm={4} lg={5} xs={6}>
                                 <Volume progress={volume * 100} muteState={muted}/>
                             </Grid>
 
