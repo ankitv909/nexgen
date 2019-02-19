@@ -12,7 +12,7 @@ module.exports = (app) => {
   app.get('/notes', notes.findAll);
 
   // Retrieve a single Note with noteId
-  app.get('/login/:userId', User.findOne);
+  app.get('/login/:userId', notes.findOne);
   app.post('/notes/:noteId', notes.findOne);
 
   // Update a Note with noteId

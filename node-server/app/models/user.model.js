@@ -11,8 +11,6 @@ const UserSchema = mongoose.Schema({
 },
     {
       timestamps: true,
-        hash: String,
-        salt: String
     },
     );
 

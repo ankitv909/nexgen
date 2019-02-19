@@ -189,11 +189,7 @@ class Audioplayer extends Component {
                 <Grid container direction='row' justify='flex-start' alignItems='flex-end' item xs={12} sm={12} md={12}
                       lg={12} xl={12} className={classes.Margin}>
                     <Paper className={classes.paper}>
-                        <audio ref={this.audioRef} controls onCanPlay={this.getTotalTime}
-                               onTimeUpdate={this.handleAudioPlay}
-                               onVolumeChange={this.handleVolume}
-                               muted={muted}
-                        style={{display:'none'}}>
+                        <audio ref={this.audioRef} controls onCanPlay={this.getTotalTime} onTimeUpdate={this.handleAudioPlay} onVolumeChange={this.handleVolume} muted={muted}>
                             <source src={source} type="audio/ogg"/>
                             <source src={source} type="audio/mpeg"/>
                             Your browser does not support the audio element

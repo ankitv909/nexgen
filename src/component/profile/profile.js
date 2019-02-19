@@ -70,6 +70,7 @@ const styles = theme => ({
     boxShadow:'0px 0px 0px 0px rgba(0, 0, 0, 0.2), 0px 0px 0px 0px rgba(0, 0, 0, 0.14), 0px 0px 0px 0px rgba(0, 0, 0, 0.12)'
   },
   paper2:{
+    marginTop:theme.spacing.unit,
     width:'100%',
     borderRadius: 0,
     backgroundColor:'#ffffff',
@@ -259,6 +260,49 @@ class Profile extends Component {
                 <Typography  className={classes.color} gutterBottom>PROFILE</Typography>
               </Grid>
             </Paper>
+            <Paper className={classes.paper3}>
+              <Grid container direction="row"  justify="flex-start" alignItems="center" item xs={12} lg={12} md={12} sm={12} xl={12} className={classes.Margin2}>
+                <Grid container direction="row"  justify="flex-start" alignItems="center" item xs={2} lg={12} md={12} sm={12} xl={12}>
+                  <Grid container justify="flex-start" alignItems="center" item xs={2} lg={4} md={4} sm={2} xl={3}>
+                    <Avatar className={classes.bigAvatar}><img src="/assets/ankit verma.jpg" className={classes.imgres} alt="img"/></Avatar>
+                  </Grid>
+                  <Grid container direction="column" justify="flex-end" alignItems="flex-start" item xs={2} lg={7} md={8} sm={10} xl={8} className={classes.paddingleft24}>
+                    <Typography variant="button"  className={classes.color} gutterBottom>Jesica Jocie</Typography>
+                    <Typography  className={classes.color} gutterBottom>Starter</Typography>
+                    <Button className={classes.startButton} component={Link} to="/plans">Upgrade</Button>
+                  </Grid>
+                </Grid>
+              </Grid>
+
+              <Grid container direction="row"  justify="center" alignItems="center" item xs={12} lg={12} md={12} sm={12} xl={12} className={classes.Margin3}>
+                <Paper className={classes.paper4}>
+                  <Grid container direction="column"  justify="center" alignItems="center" item xs={12} lg={12} md={12} sm={12} xl={12} className={classes.marginbtm} >
+                    <List component="nav" style={{width:'100%',paddingTop:'0',paddingBottom:'0'}}>
+                      <ListItem className={`${classes.listpaddding} ${classes.listborder}`} component={Link} to="/profile">
+                        <Grid item xl={1} lg={1} md={1} sm={1} xs={1}><img src="/assets/profile.svg" alt="svg" className={classes.imgres}/></Grid>
+                        <ListItemText><Typography variant="caption" className={classes.color}>PROFILE</Typography></ListItemText>
+                      </ListItem>
+                      <Divider className={classes.divider}/>
+                      <ListItem component={Link} to="/mytest" className={classes.listpaddding}>
+                        <Grid item xl={1} lg={1} md={1} sm={1} xs={1}><img src="/assets/profile.svg" alt="svg" className={classes.imgres}/></Grid>
+                        <ListItemText><Typography variant="caption" className={classes.color}>MY TESTS</Typography></ListItemText>
+                      </ListItem>
+                      <Divider className={classes.divider}/>
+                      <ListItem component={Link} to="/analytics" className={classes.listpaddding}>
+                        <Grid item xl={1} lg={1} md={1} sm={1} xs={1}><img src="/assets/profile.svg" alt="svg" className={classes.imgres}/></Grid>
+                        <ListItemText><Typography variant="caption" className={classes.color}>ANALYTICS</Typography></ListItemText>
+                      </ListItem>
+                      <Divider className={classes.divider}/>
+                      <Divider className={classes.divider} style={{marginTop:'44px'}}/>
+                      <Divider className={classes.divider} style={{marginTop:'44px'}}/>
+                      <Divider className={classes.divider} style={{marginTop:'44px'}}/>
+                      <Divider className={classes.divider} style={{marginTop:'44px'}}/>
+                      <Divider className={classes.divider} style={{marginTop:'44px'}}/>
+                    </List>
+                  </Grid>
+                </Paper>
+              </Grid>
+            </Paper>
           </Grid>
           <Grid container direction="row" justify="center" alignItems="center" item xs={8} lg={9} md={8} sm={8} xl={8}>
             <Paper className={classes.paper}>
@@ -268,9 +312,32 @@ class Profile extends Component {
                 </Grid>
               </Grid>
             </Paper>
+            <Paper className={classes.paper2}>
+              <Grid container direction="row" justify="flex-start" alignItems="center"  item xs={12} lg={12} md={12} sm={12} xl={12}>
+                <AppBar position="static" color="default" className={classes.appbar}>
+                  <Tabs
+                      value={value}
+                      onChange={this.handleChange}
+                      classes={{ root: classes.tabsRoot, indicator: classes.tabsIndicator }}
+                  >
+                    <Tab classes={{ root: classes.tabRoot, selected: classes.tabSelected }} label="Personal" component={Link} to="/profile/personal" />
+                    <Tab classes={{ root: classes.tabRoot, selected: classes.tabSelected }} label="Contact" component={Link} to="/profile/contact" />
+                    <Tab classes={{ root: classes.tabRoot, selected: classes.tabSelected }} label="Subscription" component={Link} to="/profile/subscription" />
+                    <Tab classes={{ root: classes.tabRoot, selected: classes.tabSelected }} label="Password" component={Link} to="/profile/password" />
+                  </Tabs>
+                </AppBar>
+                <Switch>
+                  <Route  path={`${this.props.match.path}/personal`} component={Personal} />
+                  <Route path={`${this.props.match.path}/contact`} component={Contact} />
+                  <Route path={`${this.props.match.path}/subscription`} component={Subscription} />
+                  <Route path={`${this.props.match.path}/password`} component={Password} />
+                  <Redirect to='/profile/personal' />
+                </Switch>
+              </Grid>
+            </Paper>
           </Grid>
         </Grid>
-        <div >
+        {/*<div >
           <Grid container direction="row" justify="space-evenly" alignItems="flex-start" item xs={12} lg={12} md={12} sm={12} xl={12} spacing={16} className={classes.paddinglft}>
             <Grid container direction="row" justify="center" alignItems="center" item xs={3} lg={3} md={3} sm={3} xl={3} className={classes.Margin1} style={{paddingTop:'0'}}>
               <Paper className={classes.paper3}>
@@ -346,7 +413,7 @@ class Profile extends Component {
 
             </Grid>
           </Grid>
-        </div>
+        </div>*/}
 
       </div>
     );
