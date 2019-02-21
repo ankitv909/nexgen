@@ -62,6 +62,7 @@ exports.login = (req, res) => {
         message: "Error retrieving user with id " + /*req.params.userId*/req.body.user_email +req.body.user_password
       });
     });
+
   };
 
   // Save User in the database
