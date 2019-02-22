@@ -191,17 +191,6 @@ class Testlist extends Component {
                                             <Typography className={classes.colr}>IELTS Recent Actual Test With Answers (Vol 4)</Typography>
                                             <Typography className={classes.color} style={{display:'inline-flex'}}>4.2 </Typography>
                                             <Rating/>
-                                            {/* <Rating {...{
-                                                className: `html-entities-rating`,
-                                                value: rating,
-                                                allowHalfs:false,
-                                                maxValue:5,
-                                                disabled:false,
-                                                starCount:5,
-                                                activeIcon: <span>&#9733;</span>, // https://www.toptal.com/designers/htmlarrows/symbols/black-star/
-                                                inactiveIcon: <span>&#9734;</span>, // https://www.toptal.com/designers/htmlarrows/symbols/white-star/
-                                                onSelect: rating => this.setState({ rating })
-                                            }} />*/}
                                             <Typography className={classes.color} style={{display:'inline-flex'}}>(320 Votes)</Typography>
                                         </div>
                                         <div >

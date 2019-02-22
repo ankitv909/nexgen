@@ -9,6 +9,7 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
 import Button from "@material-ui/core/Button";
 import {Link} from "react-router-dom";
+import Rating from "../rating/rating";
 
 
 function TabContainer({ children, dir }) {
@@ -75,6 +76,7 @@ const styles = theme => ({
         backgroundColor:'#ffffff',
         boxShadow: '0px 0px 0px rgb(243, 243, 244), 0 2px 0px rgb(243, 243, 244)',
         tratrnsition: 'all 0.3s cubic-bezier(.25,.8,.25,1)',
+        marginBottom: 2
     },
     paper4:{
         ...theme.mixins.gutters(),
@@ -127,11 +129,23 @@ const styles = theme => ({
     margin24:{
         marginTop:theme.spacing.unit * 3
     },
+    margin2:{
+        marginTop:theme.spacing.unit * 3,
+        paddingLeft : theme.spacing.unit *2
+    },
     margintop8:{
         marginTop:theme.spacing.unit
     },
     paddingleft24:{
         paddingLeft:theme.spacing.unit * 3
+    },
+    paddingright48:{
+        paddingRight:theme.spacing.unit * 6
+    },
+    marginleft24:{
+      marginLeft:theme.spacing.unit * 6,
+        paddingTop:theme.spacing.unit * 2,
+        paddingBottom:theme.spacing.unit * 2
     },
     check: {
         '&$checked': {
@@ -181,7 +195,7 @@ class Testdescptions extends Component {
                                     <Grid container direction="row" justify="flex-start" alignItems="flex-start"  item xs={1} lg={4} md={3} sm={4} xl={3}>
                                         <img src="/assets/thumb.svg" alt="thumb" className={classes.imgresponsive}/>
                                     </Grid>
-                                    <Grid container direction="column" justify="flex-start" alignItems="flex-start" item xs={8} lg={8} md={6} sm={5} xl={6}>
+                                    <Grid container direction="column" justify="flex-start" alignItems="flex-start" item xs={8} lg={8} md={9} sm={8} xl={6}>
                                         <div>
                                             <Typography variant="h5" gutterBottom  className={`${classes.color} ${classes.margin24}`}>IELTS Recent Actual Test With Answers (Vol 4)</Typography>
                                             <Typography className={`${classes.color} ${classes.margin24}`} gutterBottom>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore.Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore.</Typography>
@@ -194,21 +208,21 @@ class Testdescptions extends Component {
                                     </Grid>
                                 </Grid>
                             </Paper>
-                            <Grid container direction="row" justify="flex-end" alignItems="flex-end" item xs={8} lg={12} md={6} sm={5} xl={10}>
-                                <Grid container direction="column" justify="flex-end" alignItems="flex-end" item xs={8} lg={8} md={6} sm={5} xl={10}>
+                            <Grid container direction="column" justify="flex-end" alignItems="flex-end" item xs={12} lg={12} md={12} sm={12} xl={12} className={classes.paddingright48}>
+                                <Grid container direction="column" justify="flex-end" alignItems="flex-end" item xs={8} lg={8} md={9} sm={8} xl={9} >
                                 <Paper className={classes.paper4}>
                                     <Typography className={`${classes.color} ${classes.paddingleft24}`} gutterBottom >INSTRUCTIONS</Typography>
                                 </Paper>
                                     <Paper className={classes.paper5}>
                                         <ul>
-                                            <li className={`${classes.color} ${classes.margin24}`}> Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore.Lorem ipsum dolor sit amet, consetetur </li>
-                                            <li className={`${classes.color} ${classes.margin24}`}> Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore.Lorem ipsum dolor sit amet, consetetur </li>
-                                            <li className={`${classes.color} ${classes.margin24}`}> Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore.Lorem ipsum dolor sit amet, consetetur </li>
-                                            <li className={`${classes.color} ${classes.margin24}`}> Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore.Lorem ipsum dolor sit amet, consetetur </li>
-                                            <li className={`${classes.color} ${classes.margin24}`}> Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore.Lorem ipsum dolor sit amet, consetetur </li>
-                                            <li className={`${classes.color} ${classes.margin24}`}> invidunt ut labore et dolore.Lorem ipsum dolor sit amet, consetetur  </li>
+                                            <li className={`${classes.color} ${classes.margin2}`}> Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore.Lorem ipsum dolor sit amet, consetetur </li>
+                                            <li className={`${classes.color} ${classes.margin2}`}> Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore.Lorem ipsum dolor sit amet, consetetur </li>
+                                            <li className={`${classes.color} ${classes.margin2}`}> Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore.Lorem ipsum dolor sit amet, consetetur </li>
+                                            <li className={`${classes.color} ${classes.margin2}`}> Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore.Lorem ipsum dolor sit amet, consetetur </li>
+                                            <li className={`${classes.color} ${classes.margin2}`}> Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore.Lorem ipsum dolor sit amet, consetetur </li>
+                                            <li className={`${classes.color} ${classes.margin2}`}> invidunt ut labore et dolore.Lorem ipsum dolor sit amet, consetetur  </li>
                                         </ul>
-                                        <Grid container direction="row" justify="center" alignItems="center">
+                                        <Grid container direction="row" justify="flex-start" alignItems="center" item sm={10} md={12}  className={classes.marginleft24}>
                                         <FormControlLabel
                                             control={
                                                 <Checkbox
@@ -242,24 +256,59 @@ class Testdescptions extends Component {
                                     </Grid>
                                     <Grid container direction="row" justify="space-around" alignItems="flex-start" item xs={8} lg={9} md={9} sm={8} xl={9}>
                                         <Grid container direction="row" justify="flex-start" alignItems="flex-start" >
-                                        <div style={{paddingLeft:'8px'}}>
-                                            <Typography className={classes.colr} style={{marginTop: '0.35em',}} gutterBottom>IELTS Recent Actual Test With Answers (Vol 4)</Typography>
-                                        </div>
-                                        </Grid>
-                                        <Grid item lg={6} container direction="column" justify="flex-start" alignItems="flex-start">
                                             <div style={{paddingLeft:'8px'}}>
-                                                <Typography variant="caption" className={classes.color} gutterBottom>Time: 30 Minutes</Typography>
-                                                <Typography variant="caption" className={classes.color} gutterBottom>Marks: 30</Typography>
-                                                <div >
-                                                    <Typography variant="caption" className={classes.color} gutterBottom>Test Taken: 20198</Typography>
-                                                </div>
+                                                <Typography className={classes.colr} style={{marginTop: '0.35em',}} gutterBottom>IELTS Recent Actual Test With Answers (Vol 4)</Typography>
                                             </div>
                                         </Grid>
-                                        <Grid container item lg={6} direction="column" justify="flex-end" alignItems="flex-end">
-                                            <div style={{paddingRight:'8px'}}>
-                                                <Typography variant="caption" className={classes.color} gutterBottom>4.2 </Typography>
-                                                <Typography variant="caption" className={classes.color} gutterBottom>(320 Votes)</Typography>
+                                        <Grid container direction="row" justify="flex-end" alignItems="flex-end">
+                                            <Grid item lg={6} xl={6} sm={12} xs={6} md={6} container direction="column" justify="flex-start" alignItems="flex-start">
+                                                <div style={{paddingLeft:'8px'}}>
+                                                    <Typography variant="caption" className={classes.color} gutterBottom>Time: 30 Minutes</Typography>
+                                                    <Typography variant="caption" className={classes.color} gutterBottom>Marks: 30</Typography>
+                                                    <div >
+                                                        <Typography variant="caption" className={classes.color} gutterBottom>Test Taken: 20198</Typography>
+                                                    </div>
+                                                </div>
+                                            </Grid>
+                                            <Grid container item lg={6} xl={6} sm={10} xs={6} md={6} direction="column" justify="flex-end" alignItems="flex-end">
+                                                <div style={{paddingRight:'8px'}}>
+                                                    <Typography variant="caption" className={classes.color} gutterBottom style={{display:'inline-flex'}}>4.2 </Typography>
+                                                    <Rating/>
+                                                    <Typography variant="caption" className={classes.color} gutterBottom>(320 Votes)</Typography>
+                                                </div>
+                                            </Grid>
+                                        </Grid>
+                                    </Grid>
+                                </Grid>
+                            </Paper>
+                            <Paper className={classes.paper3}>
+                                <Grid container direction="row"  item xs={12} lg={12} md={12} sm={12} xl={12} >
+                                    <Grid container direction="row" justify="flex-start" alignItems="flex-start"  item xs={8} lg={3} md={3} sm={4} xl={3}>
+                                        <img src="/assets/amlogo.svg" alt="thumb" className={classes.imgres}/>
+                                    </Grid>
+                                    <Grid container direction="row" justify="space-around" alignItems="flex-start" item xs={8} lg={9} md={9} sm={8} xl={9}>
+                                        <Grid container direction="row" justify="flex-start" alignItems="flex-start" >
+                                            <div style={{paddingLeft:'8px'}}>
+                                                <Typography className={classes.colr} style={{marginTop: '0.35em',}} gutterBottom>IELTS Recent Actual Test With Answers (Vol 4)</Typography>
                                             </div>
+                                        </Grid>
+                                        <Grid container direction="row" justify="flex-end" alignItems="flex-end">
+                                            <Grid item lg={6} xl={6} sm={12} xs={6} md={6} container direction="column" justify="flex-start" alignItems="flex-start">
+                                                <div style={{paddingLeft:'8px'}}>
+                                                    <Typography variant="caption" className={classes.color} gutterBottom>Time: 30 Minutes</Typography>
+                                                    <Typography variant="caption" className={classes.color} gutterBottom>Marks: 30</Typography>
+                                                    <div >
+                                                        <Typography variant="caption" className={classes.color} gutterBottom>Test Taken: 20198</Typography>
+                                                    </div>
+                                                </div>
+                                            </Grid>
+                                            <Grid container item lg={6} xl={6} sm={10} xs={6} md={6} direction="column" justify="flex-end" alignItems="flex-end">
+                                                <div style={{paddingRight:'8px'}}>
+                                                    <Typography variant="caption" className={classes.color} gutterBottom style={{display:'inline-flex'}}>4.2 </Typography>
+                                                    <Rating/>
+                                                    <Typography variant="caption" className={classes.color} gutterBottom>(320 Votes)</Typography>
+                                                </div>
+                                            </Grid>
                                         </Grid>
                                     </Grid>
                                 </Grid>

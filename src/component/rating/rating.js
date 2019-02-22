@@ -12,13 +12,16 @@ class Rating extends Component {
     constructor(props) {
         super(props);
         this.state = {};
+        this.handleRate = this.handleRate.bind(this);
     };
-
+    handleRate(event) {
+        alert(this.handleRate.bind(this));
+    }
     render() {
         /*const {classes} = this.props;*/
         return (
             <div className='rating' >
-                <Rater total={5} rating={2} />
+                <Rater total={5} rating={2} onRate={this.handleRate.bind(this)}/>
             </div>
         )
     }
