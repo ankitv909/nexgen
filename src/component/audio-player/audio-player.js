@@ -69,7 +69,8 @@ const styles = theme => ({
     },
     imgres: {
         width: '100%',
-        height: 'auto'
+        height: 'auto',
+        cursor:'pointer'
     },
     Margin: {
         marginTop: theme.spacing.unit * 5,

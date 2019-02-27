@@ -21,7 +21,7 @@ class Rating extends Component {
         /*const {classes} = this.props;*/
         return (
             <div className='rating' >
-                <Rater total={5} rating={2} onRate={this.handleRate.bind(this)}/>
+                <Rater total={5} rating={2}  interactive={true} onRate={this.handleRate.bind(this)}/>
             </div>
         )
     }

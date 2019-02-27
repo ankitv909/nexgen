@@ -27,15 +27,19 @@ const styles = theme => ({
         boxShadow: '0px 0px 0px 1px #827d7d6b',
         backgroundColor: '#F8A662',
         borderRadius: 50
+    },
+    imgres:{
+        cursor:'pointer'
     }
 });
 
 class Volume extends Component {
     constructor(props) {
         super(props);
-        this.state = {};
+        this.state = {
+            muteState: 'pause',
+        };
     };
-
 
     render() {
         const {classes, progress, muteState} = this.props;
@@ -44,9 +48,9 @@ class Volume extends Component {
                 <Grid container direction="row" justify="flex-end" alignItems="center">
                     <Grid container justify="flex-end" item xl={4} lg={4} md={4} sm={4}>
                         {muteState === true ?
-                            <img src="/assets/mute.svg" alt="baseline" className={classes.imgres}/>
+                            <img src="/assets/mute.svg" alt="baseline"  onClick={this.handleVolumeMute} className={classes.imgres}/>
                             : muteState === false ?
-                                <img src="/assets/volume.svg" onClick={this.handleVolume} alt="baseline"
+                                <img src="/assets/volume.svg" onClick={this.handleVolumePlay} alt="baseline"
                                      className={classes.imgres}/> : ''}
                         </Grid>
                     <Grid container justify="flex-end" item xl={2} lg={3} md={4} sm={6}>

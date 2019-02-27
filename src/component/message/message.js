@@ -175,7 +175,7 @@ const styles = theme => ({
   },
   tabSelected: {},
   marginlft:{
-    marginLeft: theme.spacing.unit * 13
+    marginLeft: theme.spacing.unit * 16
   },
   check: {
     '&$checked': {
@@ -188,7 +188,10 @@ const styles = theme => ({
     paddingRight:theme.spacing.unit * 4,
   },
   divider:{backgroundColor:'rgba(166, 163, 163, 0.12)'},
-  listborder:{backgroundColor:'#E5E6E8',borderLeft:'2px solid #37774B'}
+  listborder:{backgroundColor:'#E5E6E8',borderLeft:'2px solid #37774B'},
+  margin64:{
+    paddingLeft:theme.spacing.unit * 8
+  }
 
 });
 
@@ -237,7 +240,7 @@ class Message extends Component {
               <Paper className={classes.paper3}>
                 <Grid container direction="row"  justify="flex-start" alignItems="center" item xs={12} lg={12} md={12} sm={12} xl={12} className={classes.Margin2}>
                   <Grid container direction="row"  justify="flex-start" alignItems="center" item xs={2} lg={12} md={12} sm={12} xl={12}>
-                    <Grid container justify="flex-start" alignItems="center" item xs={2} lg={4} md={4} sm={2} xl={3}>
+                    <Grid container justify="flex-start" alignItems="center" item xs={2} lg={4} md={4} sm={3} xl={3}>
                       <Avatar className={classes.bigAvatar}><img src="/assets/ankit verma.jpg" className={classes.imgres} alt="img"/></Avatar>
                     </Grid>
                     <Grid container direction="column" justify="flex-end" alignItems="flex-start" item xs={2} lg={7} md={8} sm={9} xl={7} className={classes.paddingleft24}>
@@ -278,10 +281,10 @@ class Message extends Component {
               </Paper>
             </Grid>
             <Grid container direction="row" justify="center" alignItems="center" item xs={8} lg={9} md={8} sm={8} xl={8} className={classes.margintop}>
-              <Grid container direction="row" justify="flex-start" alignItems="center" item xs={8} lg={11} md={11} sm={11} xl={11} className={classes.Margin1}>
+              <Grid container direction="row" justify="flex-start" alignItems="center" item xs={8} lg={11} md={11} sm={10} xl={11} className={classes.Margin1}>
                 <Typography variant="subtitle1"  className={classes.color}>Deactivate My Accounts</Typography>
               </Grid>
-              <Grid container direction="row" justify="flex-start" alignItems="center" item xs={8} lg={10} md={10} sm={10} xl={10} className={classes.Margin1}>
+              <Grid container direction="row" justify="flex-start" alignItems="center" item xs={8} lg={10} md={9} sm={8} xl={10} className={classes.Margin1}>
                 <Typography variant="body1"  className={classes.color}>Conditions</Typography>
               </Grid>
               <Grid container direction="column" justify="center" alignItems="flex-start" item xs={8} lg={12} md={12} sm={12} xl={12} className={`${classes.Margin1} ${classes.marginlft}`}>
@@ -293,7 +296,7 @@ class Message extends Component {
                 <Typography variant="body1"  className={`${classes.color} ${classes.Margin1}`}>I agree to deactivate my account.</Typography>
                 <Typography variant="body1"  className={`${classes.color} ${classes.Margin1}`}>I agree to deactivate my account.</Typography>
               </Grid>
-              <Grid container direction="row" justify="flex-start" alignItems="center" item xs={8} lg={11} md={11} sm={10} xl={12} className={classes.Margin1}>
+              <Grid container direction="row" justify="flex-start" alignItems="center" item xs={12} lg={12} md={12} sm={12} xl={12} className={`${classes.Margin1} ${classes.margin64}`}>
                 <FormControlLabel
                   control={
                     <Checkbox
