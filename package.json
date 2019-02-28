@@ -14,7 +14,6 @@
     "material-ui": "^0.20.2",
     "mongoose": "^5.4.9",
     "prop-types": "^15.6.2",
-    "react": "^16.7.0",
     "react-app": "^1.1.2",
     "react-dom": "^16.7.0",
     "react-otp-input": "^0.3.1",
