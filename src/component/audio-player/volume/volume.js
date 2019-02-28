@@ -37,10 +37,20 @@ class Volume extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            muteState: 'pause',
+            muteState: 'false',
+            currentVolume: 0,
         };
     };
-
+    handleVolumeMute = () => {
+        this.audioRef.current.pause();
+        this.audioRef.current.currentVolume = this.state.currentVolume;
+        this.setState({playerState: 'pause',});
+    };
+    handleVolumePlay = () => {
+        this.audioRef.current.play();
+        this.audioRef.current.currentVolume = this.state.currentVolume;
+        this.setState({playerState: 'play'});
+    };
     render() {
         const {classes, progress, muteState} = this.props;
         return (

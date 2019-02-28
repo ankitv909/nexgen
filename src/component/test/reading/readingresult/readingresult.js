@@ -194,6 +194,20 @@ const styles = theme => ({
     paddingTop: theme.spacing.unit,
     backgroundColor: '#E5E6E8',
     paddingBottom: theme.spacing.unit,
+  },
+  margnbotm:{
+    marginBottom:theme.spacing.unit * 6
+  },
+  xl:{
+    [theme.breakpoints.only('xl')]: {
+      maxWidth: '14%',
+    },
+    [theme.breakpoints.only('sm')]: {
+      maxWidth: '28%',
+    },
+    [theme.breakpoints.only('md')]: {
+      maxWidth: '23%',
+    },
   }
 })
 
@@ -230,10 +244,10 @@ class Readingresult extends Component {
             <Grid container direction='row' justify='center' alignItems='center' item xs={12} lg={8} md={8} sm={8} xl={8} className={classes.Margin}>
               <Paper className={classes.paper2}>
                 <Grid container direction='row' item xs={12} lg={12} md={12} sm={12} xl={12} >
-                  <Grid container direction='row' justify='flex-start' alignItems='flex-start' item xs={8} lg={2} md={3} sm={4} xl={2}>
+                  <Grid container direction='row' justify='flex-start' alignItems='flex-start' item xs={8} lg={2} md={3} sm={4} xl={2} className={classes.xl}>
                     <img src='/assets/thumb.svg' alt='thumb' className={classes.imgresponsive} />
                   </Grid>
-                  <Grid container direction='column' justify='space-around' alignItems='flex-start' item xs={12} lg={6} md={6} sm={5} xl={6}>
+                  <Grid container direction='column' justify='space-around' alignItems='flex-start' item xs={12} lg={6} md={6} sm={4} xl={6}>
                     <div>
                       <Typography className={classes.colr}>IELTS Recent Actual Test With Answers (Vol 4)</Typography>
                       {/*<Typography className={classes.color}>4.2 (320 Votes)</Typography>*/}
@@ -244,9 +258,14 @@ class Readingresult extends Component {
                       <Typography variant='caption' className={classes.color}>Test Taken: 20198</Typography>
                     </div>
                   </Grid>
-                  <Grid container direction='column' justify='space-around' alignItems='flex-end' item xs={12} lg={4} md={3} sm={3} xl={4}>
-                    <div style={{ paddingRight: '8px' }}>
+                  <Grid container direction='column' justify='space-around' alignItems='flex-end' item xs={12} lg={4} md={3} sm={4} xl={4}>
+                    <div style={{ paddingRight: '8px' }} className={classes.margnbotm}>
                       <Typography variant="caption" className={classes.colr}>Published: 20 July, 2018</Typography>
+                    </div>
+                    <div style={{ paddingRight: '8px' }}>
+                      <Typography variant="caption" className={classes.colr}>{/*Published: 20 July, 2018*/}</Typography>
+                      <Typography variant="caption" className={classes.colr}>{/*Published: 20 July, 2018*/}</Typography>
+                      <Typography variant="caption" className={classes.colr}>{/*Published: 20 July, 2018*/}</Typography>
                     </div>
                   </Grid>
                 </Grid>
@@ -297,9 +316,9 @@ class Readingresult extends Component {
                         </Grid>
                       </Grid>
                     </Paper>
-                    <Grid container direction="row" justify="center" alignItems="center" item xs={9} lg={12} md={6} sm={6} xl={6} className={classes.Margin}>
+                    <Grid container direction="row" justify="center" alignItems="center" item xs={9} lg={12} md={6} sm={6} xl={8} className={classes.Margin}>
                       <Grid container direction="row" justify="center" alignItems="center" item xs={3} lg={3} md={4} sm={4} xl={4}>
-                        <Grid item xs={2} lg={2} md={4} sm={3} xl={4}>
+                        <Grid item xs={2} lg={2} md={4} sm={3} xl={3}>
                           <img src="/assets/facebook.svg" alt="download" className={classes.imgres}/>
                         </Grid>
                       </Grid>
