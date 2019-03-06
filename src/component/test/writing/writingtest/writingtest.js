@@ -11,6 +11,7 @@ import {Link, Redirect, Route, Switch} from "react-router-dom";
 import Instruction from "../instruction/instruction";
 import Writing from "../writing"
 import Button from "@material-ui/core/Button";
+import Avatar from '@material-ui/core/Avatar';
 
 function TabContainer({ children, dir }) {
     return (
@@ -87,6 +88,9 @@ const styles = theme => ({
     color:{
         color:'#707070'
     },
+    colraddmore:{
+      color:'#6B7678'
+    },
     Margin:{
         marginTop:theme.spacing.unit * 2,
         marginBottom: theme.spacing.unit * 2
@@ -109,6 +113,9 @@ const styles = theme => ({
     },
     margintop:{
       marginTop:theme.spacing.unit * 3
+    },
+    marginuploadimgtop:{
+        marginTop:theme.spacing.unit
     },
     marginbottom:{
         marginBottom:theme.spacing.unit * 3
@@ -229,12 +236,31 @@ const styles = theme => ({
         marginLeft: theme.spacing.unit * 3,
         marginRight: theme.spacing.unit * 3,
     },
+    marginlrtb:{
+        marginLeft: theme.spacing.unit ,
+        marginRight: theme.spacing.unit ,
+        marginTop:theme.spacing.unit ,
+        marginBottom:theme.spacing.unit ,
+    },
     textcolor:{
         color:'#000000',
         textTransform:'none',
+        textAlign: 'center'
     },
     input: {
         display: 'none',
+    },
+    center:{textAlign: 'center'},
+    imageupload:{
+       /* height:'4rem',
+        width:'2rem',*/
+        backgroundColor:'#FFFFFF'
+    },
+    bigAvatar: {
+        width: '100%',
+        height: 'auto',
+        borderRadius:0,
+        backgroundImage:'public/assets/upload.svg'
     },
 });
 
@@ -244,7 +270,9 @@ class Writingtest extends Component {
         document.title = 'writing';
         this.state = {
             value: 0,
-          file: '',imagePreviewUrl: ''
+             file: null,
+            imagePreviewUrl: '',
+            shown: true,
         };
         switch (this.props.location.pathname) {
             case '/writingtest/question/writing':
@@ -259,14 +287,27 @@ class Writingtest extends Component {
         }
         this.handleChange = this.handleChange.bind(this);
     }
-    handleChange = (event, value) => {
-        this.setState({ value });
-    };
-
+    handleChange(event) {
+        this.setState({
+            file: URL.createObjectURL(event.target.files[0])
+        })
+    }
+    toggle() {
+        this.setState({
+            shown: !this.state.shown
+        });
+    }
 
     render() {
       const { classes } = this.props;
         const { value } = this.state;
+        const shown = {
+            display: this.state.shown ? "block" : "none"
+        };
+
+        const hidden = {
+            display: this.state.shown ? "none" : "block"
+        }
         return (
             <div className="writingtest">
                 <Grid container direction="row" justify="space-evenly" alignItems="flex-start" item xs={12} lg={12} md={12} sm={12} xl={12} >
@@ -351,27 +392,42 @@ class Writingtest extends Component {
 
                                 <Grid container direction="column"  justify="center" alignItems="center" item xs={12} lg={12} md={12} sm={12} xl={12} className={classes.Margin3}>
                                     <Grid container direction="row"  justify="center" alignItems="center" item xs={2} lg={10} md={10} sm={10} xl={8} className={classes.marginbtm}>
-                                        <Grid container justify="center" alignItems="center" item xs={2} lg={6} md={8} sm={6} xl={6} className={classes.margintop}>
+                                        <Grid container justify="center" alignItems="center" item xs={2} lg={6} md={8} sm={6} xl={6} className={classes.margintop} style={hidden}>
                                             <img src="/assets/Mask Group 1.svg" alt="uploadimg" className={classes.imgres}/>
                                         </Grid>
-                                        <Grid container direction="column" justify="center" alignItems="center" item xs={12} lg={10} md={12} sm={12} xl={12}>
+                                        <Grid container direction="column" justify="center" alignItems="center" item xs={12} lg={10} md={12} sm={12} xl={12} style={hidden}>
                                             <Typography variant="subtitle2" className={classes.textcolor} gutterBottom>Drag & Drop Files to Upload</Typography>
                                             <Typography variant="caption" className={classes.textcolor} gutterBottom>or</Typography>
                                         </Grid>
-                                        <Grid container  justify="center" alignItems="center" className={classes.marginbottom}>
+                                        <Grid container direction="row" justify="flex-start" alignItems="center" item xs={12} lg={12} md={12} sm={12} xl={12} className={classes.center}  style={shown}>
+                                            <Grid container direction="column" justify="center" alignItems="center" item xs={2} lg={4} md={4} sm={6} xl={3} className={`${classes.imageupload} ${classes.marginlrtb}`} >
+                                                <Grid item xs={2} lg={5} md={4} sm={2} xl={10}  className={classes.marginuploadimgtop}> <Avatar alt="Remy Sharp" src={this.state.file} className={classes.bigAvatar} /></Grid>
+                                                <Typography variant="caption" className={classes.colraddmore} gutterBottom>Answer 1</Typography>
+                                            </Grid>
+                                            <Grid container direction="column" justify="center" alignItems="center" item xs={2} lg={4} md={4} sm={6} xl={3} className={`${classes.imageupload} ${classes.marginlrtb}`}>
+                                                <label htmlFor="contained-button-file" style={{width:'100%'}}>
+                                                    <Grid item xs={2} lg={5} md={4} sm={5} xl={6} className={classes.marginuploadimgtop} style={{display:'inline-block'}}><img src="/assets/upload.svg" alt="" className={classes.imgres} /></Grid>
+                                                    <Typography variant="caption" className={classes.colraddmore} gutterBottom>Add More</Typography>
+                                                </label>
+                                            </Grid>
+                                        </Grid>
+                                        <div style={ hidden }>
+                                        <Grid container  justify="center" alignItems="center" className={classes.marginbottom} >
                                             <input
-                                              accept="text/csv/"
+                                              accept="text/csv/*"
                                               className={classes.input}
                                               id="contained-button-file"
                                               multiple
                                               type="file"
+                                              onChange={this.handleChange}
                                             />
                                             <label htmlFor="contained-button-file">
-                                                <Button  component="span" className={classes.browserButton}>
+                                                <Button  component="span" className={classes.browserButton} onClick={this.toggle.bind(this)}>
                                                     Upload
                                                 </Button>
                                             </label>
                                         </Grid>
+                                        </div>
                                     </Grid>
                                 </Grid>
                                 <Grid container direction="row"  justify="space-evenly" alignItems="center" className={classes.submitmargin} >
