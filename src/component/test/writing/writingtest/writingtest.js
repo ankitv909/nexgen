@@ -254,6 +254,7 @@ const styles = theme => ({
     imageupload:{
        /* height:'4rem',
         width:'2rem',*/
+       minWidth:'4rem',
         backgroundColor:'#FFFFFF'
     },
     bigAvatar: {
@@ -270,9 +271,10 @@ class Writingtest extends Component {
         document.title = 'writing';
         this.state = {
             value: 0,
-             file: null,
-            imagePreviewUrl: '',
+             file: '',
             shown: true,
+            imagePreviewUrl: '',
+            fileName: '',
         };
         switch (this.props.location.pathname) {
             case '/writingtest/question/writing':
@@ -285,17 +287,38 @@ class Writingtest extends Component {
                 this.state = {value: 0};
                 break;
         }
-        this.handleChange = this.handleChange.bind(this);
-    }
-    handleChange(event) {
-        this.setState({
-            file: URL.createObjectURL(event.target.files[0])
-        })
+        this._handleImageChange = this._handleImageChange.bind(this);
+        this._handleSubmit = this._handleSubmit.bind(this);
     }
     toggle() {
         this.setState({
             shown: !this.state.shown
         });
+    }
+    _handleSubmit(e) {
+        e.preventDefault();
+        // TODO: do something with -> this.state.file
+    }
+
+    _handleImageChange(e) {
+        e.preventDefault();
+
+        let reader = new FileReader();
+        let file = e.target.files[0];
+
+        reader.onloadend = () => {
+            this.setState({
+                file: file,
+                imagePreviewUrl: reader.result
+            });
+        }
+        if(e.target.files.length > 0) {
+            // Accessed .name from file
+            this.setState({ fileName: e.target.files[0].name });
+        }
+
+        reader.readAsDataURL(file)
+        console.log(file);
     }
 
     render() {
@@ -307,6 +330,28 @@ class Writingtest extends Component {
 
         const hidden = {
             display: this.state.shown ? "none" : "block"
+        }
+        const { fileName } = this.state;
+        let file = null;
+
+        file = fileName
+            ? ( <Typography variant="caption" className={classes.colraddmore} gutterBottom>{fileName}</Typography>)
+            : ( <Typography variant="caption" className={classes.colraddmore} gutterBottom>Answer</Typography> );
+        let {imagePreviewUrl} = this.state;
+        let $imagePreview = null;
+        if (imagePreviewUrl) {
+            $imagePreview = ( <Grid container direction="row" justify="flex-start" alignItems="center" item xs={12} lg={12} md={12} sm={12} xl={12} className={classes.center}  >
+                    <Grid container direction="column" justify="center" alignItems="center" item xs={2} lg={4} md={4} sm={6} xl={3} className={`${classes.imageupload} ${classes.marginlrtb}`} >
+                        <Grid item xs={2} lg={7} md={4} sm={2} xl={9}  className={classes.marginuploadimgtop}><Avatar alt="Remy Sharp" src={imagePreviewUrl} className={classes.bigAvatar} /> </Grid>
+                        {file}
+                    </Grid>
+                    <Grid container direction="column" justify="center" alignItems="center" item xs={2} lg={4} md={4} sm={6} xl={3} className={`${classes.imageupload} ${classes.marginlrtb}`}>
+                        <label htmlFor="contained-button-file" style={{width:'100%'}}>
+                            <Grid item xs={2} lg={5} md={4} sm={5} xl={6} className={classes.marginuploadimgtop} style={{display:'inline-block'}}><img src="/assets/upload.svg" alt="" className={classes.imgres} /></Grid>
+                            <Typography variant="caption" className={classes.colraddmore} gutterBottom>Add More</Typography>
+                        </label>
+                    </Grid>
+                </Grid>)
         }
         return (
             <div className="writingtest">
@@ -399,30 +444,29 @@ class Writingtest extends Component {
                                             <Typography variant="subtitle2" className={classes.textcolor} gutterBottom>Drag & Drop Files to Upload</Typography>
                                             <Typography variant="caption" className={classes.textcolor} gutterBottom>or</Typography>
                                         </Grid>
-                                        <Grid container direction="row" justify="flex-start" alignItems="center" item xs={12} lg={12} md={12} sm={12} xl={12} className={classes.center}  style={shown}>
-                                            <Grid container direction="column" justify="center" alignItems="center" item xs={2} lg={4} md={4} sm={6} xl={3} className={`${classes.imageupload} ${classes.marginlrtb}`} >
-                                                <Grid item xs={2} lg={5} md={4} sm={2} xl={10}  className={classes.marginuploadimgtop}> <Avatar alt="Remy Sharp" src={this.state.file} className={classes.bigAvatar} /></Grid>
-                                                <Typography variant="caption" className={classes.colraddmore} gutterBottom>Answer 1</Typography>
-                                            </Grid>
-                                            <Grid container direction="column" justify="center" alignItems="center" item xs={2} lg={4} md={4} sm={6} xl={3} className={`${classes.imageupload} ${classes.marginlrtb}`}>
-                                                <label htmlFor="contained-button-file" style={{width:'100%'}}>
-                                                    <Grid item xs={2} lg={5} md={4} sm={5} xl={6} className={classes.marginuploadimgtop} style={{display:'inline-block'}}><img src="/assets/upload.svg" alt="" className={classes.imgres} /></Grid>
-                                                    <Typography variant="caption" className={classes.colraddmore} gutterBottom>Add More</Typography>
-                                                </label>
-                                            </Grid>
+                                        <Grid style={shown}>
+                                            {$imagePreview}
                                         </Grid>
+                                        {/*<div>
+                                            <form onSubmit={this._handleSubmit}>
+                                                <input type="file" onChange={this._handleImageChange} />
+                                                <button type="submit" onClick={this._handleSubmit}>Upload Image</button>
+                                            </form>
+                                            {$imagePreview}
+                                        </div>*/}
+
                                         <div style={ hidden }>
                                         <Grid container  justify="center" alignItems="center" className={classes.marginbottom} >
                                             <input
-                                              accept="text/csv/*"
+                                              accept="text/csv"
                                               className={classes.input}
                                               id="contained-button-file"
                                               multiple
                                               type="file"
-                                              onChange={this.handleChange}
+                                              onChange={this._handleImageChange}
                                             />
                                             <label htmlFor="contained-button-file">
-                                                <Button  component="span" className={classes.browserButton} onClick={this.toggle.bind(this)}>
+                                                <Button  component="span" className={classes.browserButton}   onClick={this.toggle.bind(this)}>
                                                     Upload
                                                 </Button>
                                             </label>
