@@ -89,7 +89,8 @@ const styles = theme => ({
         color:'#707070'
     },
     colraddmore:{
-      color:'#6B7678'
+        color:'#6B7678',
+        border:'none !important'
     },
     Margin:{
         marginTop:theme.spacing.unit * 2,
@@ -108,17 +109,18 @@ const styles = theme => ({
         marginBottom: theme.spacing.unit * 2
     },
     submitmargin:{
-            marginTop:theme.spacing.unit * 14,
-            marginBottom: theme.spacing.unit * 2
+        marginTop:theme.spacing.unit * 14,
+        marginBottom: theme.spacing.unit * 2
     },
     margintop:{
-      marginTop:theme.spacing.unit * 3
+        marginTop:theme.spacing.unit * 3
     },
     marginuploadimgtop:{
         marginTop:theme.spacing.unit
     },
     marginbottom:{
-        marginBottom:theme.spacing.unit * 3
+        marginBottom:theme.spacing.unit * 3,
+        border:'none !important'
     },
     imgresponsive:{
         width:'80%',
@@ -126,7 +128,8 @@ const styles = theme => ({
     },
     imgres:{
         width:'100%',
-        height:'auto'
+        height:'auto',
+        border: 'none !important'
     },
     imgres1:{
         width:'100%',
@@ -212,6 +215,7 @@ const styles = theme => ({
         padding: '6px 40px',
         color:'#ffff',
         textTransform:'none',
+        border:'none !important',
         '&:hover': {
             backgroundColor: '#F8A662',
             borderColor: '#F8A662',
@@ -245,23 +249,28 @@ const styles = theme => ({
     textcolor:{
         color:'#000000',
         textTransform:'none',
-        textAlign: 'center'
+        textAlign: 'center',
+        border: 'none !important'
     },
     input: {
         display: 'none',
     },
-    center:{textAlign: 'center'},
+    center:{textAlign: 'center',border:'none !important'},
     imageupload:{
-       /* height:'4rem',
-        width:'2rem',*/
-       minWidth:'4rem',
-        backgroundColor:'#FFFFFF'
+        /* height:'4rem',
+         width:'2rem',*/
+        minWidth:'4rem',
+        backgroundColor:'#FFFFFF',
+        border:'none !important'
     },
     bigAvatar: {
         width: '100%',
         height: 'auto',
         borderRadius:0,
         backgroundImage:'public/assets/upload.svg'
+    },
+    bordernone:{
+        border: 'none !important'
     },
 });
 
@@ -271,7 +280,7 @@ class Writingtest extends Component {
         document.title = 'writing';
         this.state = {
             value: 0,
-             file: '',
+            file: '',
             shown: true,
             imagePreviewUrl: '',
             fileName: '',
@@ -289,7 +298,11 @@ class Writingtest extends Component {
         }
         this._handleImageChange = this._handleImageChange.bind(this);
         this._handleSubmit = this._handleSubmit.bind(this);
+        this.handleChange = this.handleChange.bind(this);
     }
+    handleChange = (event, value) => {
+        this.setState({ value });
+    };
     toggle() {
         this.setState({
             shown: !this.state.shown
@@ -304,7 +317,7 @@ class Writingtest extends Component {
         e.preventDefault();
 
         let reader = new FileReader();
-        let file = e.target.files[0];
+        let file = e.dataTransfer ? e.dataTransfer.files[0] : e.target ? e.target.files[0] : e[0];
 
         reader.onloadend = () => {
             this.setState({
@@ -312,17 +325,32 @@ class Writingtest extends Component {
                 imagePreviewUrl: reader.result
             });
         }
-        if(e.target.files.length > 0) {
+        if(file) {
             // Accessed .name from file
-            this.setState({ fileName: e.target.files[0].name });
+            this.setState({ fileName: file.name });
         }
 
         reader.readAsDataURL(file)
         console.log(file);
     }
-
+    dragover = (event) => {
+        event.preventDefault();
+        event.target.style.border = "2px dashed #257CBF";
+        console.log('dragover');
+    }
+    dragleave = (event) => {
+        event.preventDefault();
+        event.target.style.border = "2px dashed #B7B6B6";
+        console.log('dragleave');
+    }
+    drop = (event) => {
+        event.preventDefault();
+        console.log("drop");
+        this.toggle(event);
+        this._handleImageChange(event);
+    }
     render() {
-      const { classes } = this.props;
+        const { classes } = this.props;
         const { value } = this.state;
         const shown = {
             display: this.state.shown ? "block" : "none"
@@ -341,17 +369,17 @@ class Writingtest extends Component {
         let $imagePreview = null;
         if (imagePreviewUrl) {
             $imagePreview = ( <Grid container direction="row" justify="flex-start" alignItems="center" item xs={12} lg={12} md={12} sm={12} xl={12} className={classes.center}  >
-                    <Grid container direction="column" justify="center" alignItems="center" item xs={2} lg={4} md={4} sm={6} xl={3} className={`${classes.imageupload} ${classes.marginlrtb}`} >
-                        <Grid item xs={2} lg={7} md={4} sm={2} xl={9}  className={classes.marginuploadimgtop}><Avatar alt="Remy Sharp" src={imagePreviewUrl} className={classes.bigAvatar} /> </Grid>
-                        {file}
-                    </Grid>
-                    <Grid container direction="column" justify="center" alignItems="center" item xs={2} lg={4} md={4} sm={6} xl={3} className={`${classes.imageupload} ${classes.marginlrtb}`}>
-                        <label htmlFor="contained-button-file" style={{width:'100%'}}>
-                            <Grid item xs={2} lg={5} md={4} sm={5} xl={6} className={classes.marginuploadimgtop} style={{display:'inline-block'}}><img src="/assets/upload.svg" alt="" className={classes.imgres} /></Grid>
-                            <Typography variant="caption" className={classes.colraddmore} gutterBottom>Add More</Typography>
-                        </label>
-                    </Grid>
-                </Grid>)
+                <Grid container direction="column" justify="center" alignItems="center" item xs={2} lg={4} md={4} sm={6} xl={3} className={`${classes.imageupload} ${classes.marginlrtb}`} >
+                    <Grid item xs={2} lg={7} md={4} sm={2} xl={9}  className={classes.marginuploadimgtop}><Avatar alt="Remy Sharp" src={imagePreviewUrl} className={classes.bigAvatar} /> </Grid>
+                    {file}
+                </Grid>
+                <Grid container direction="column" justify="center" alignItems="center" item xs={2} lg={4} md={4} sm={6} xl={3} className={`${classes.imageupload} ${classes.marginlrtb}`}>
+                    <label htmlFor="contained-button-file"   style={{width:'100%'}}>
+                        <Grid item xs={2} lg={5} md={4} sm={5} xl={6} className={classes.marginuploadimgtop} style={{display:'inline-block',border:'none !important'}}><img src="/assets/upload.svg" alt="" className={classes.imgres} /></Grid>
+                        <Typography variant="caption" className={classes.colraddmore} gutterBottom>Add More</Typography>
+                    </label>
+                </Grid>
+            </Grid>)
         }
         return (
             <div className="writingtest">
@@ -436,12 +464,15 @@ class Writingtest extends Component {
                                 </Grid>
 
                                 <Grid container direction="column"  justify="center" alignItems="center" item xs={12} lg={12} md={12} sm={12} xl={12} className={classes.Margin3}>
-                                    <Grid container direction="row"  justify="center" alignItems="center" item xs={2} lg={10} md={10} sm={10} xl={8} className={classes.marginbtm}>
+                                    <Grid container direction="row" justify="center" alignItems="center" item xs={2} lg={10} md={10} sm={10} xl={8} className={classes.marginbtm}
+                                          onDragOver={this.dragover} onDragLeave={this.dragleave}  onDrop={this.drop} >
                                         <Grid container justify="center" alignItems="center" item xs={2} lg={6} md={8} sm={6} xl={6} className={classes.margintop} style={hidden}>
-                                            <img src="/assets/Mask Group 1.svg" alt="uploadimg" className={classes.imgres}/>
+                                            <label htmlFor="contained-button-file" >
+                                                <img src="/assets/Mask Group 1.svg" alt="uploadimg" className={classes.imgres} />
+                                            </label>
                                         </Grid>
-                                        <Grid container direction="column" justify="center" alignItems="center" item xs={12} lg={10} md={12} sm={12} xl={12} style={hidden}>
-                                            <Typography variant="subtitle2" className={classes.textcolor} gutterBottom>Drag & Drop Files to Upload</Typography>
+                                        <Grid container direction="column" justify="center" alignItems="center" item xs={12} lg={10} md={12} sm={12} xl={12} className={classes.bordernone} style={hidden}>
+                                            <Typography variant="subtitle2" className={classes.textcolor} gutterBottom style={{border:'none !important'}}>Drag & Drop Files to Upload</Typography>
                                             <Typography variant="caption" className={classes.textcolor} gutterBottom>or</Typography>
                                         </Grid>
                                         <Grid style={shown}>
@@ -455,22 +486,22 @@ class Writingtest extends Component {
                                             {$imagePreview}
                                         </div>*/}
 
-                                        <div style={ hidden }>
-                                        <Grid container  justify="center" alignItems="center" className={classes.marginbottom} >
-                                            <input
-                                              accept="text/csv"
-                                              className={classes.input}
-                                              id="contained-button-file"
-                                              multiple
-                                              type="file"
-                                              onChange={this._handleImageChange}
-                                            />
-                                            <label htmlFor="contained-button-file">
-                                                <Button  component="span" className={classes.browserButton}   onClick={this.toggle.bind(this)}>
-                                                    Upload
-                                                </Button>
-                                            </label>
-                                        </Grid>
+                                        <div style={ hidden } className={classes.bordernone}>
+                                            <Grid container  justify="center" alignItems="center" className={classes.marginbottom} >
+                                                <input
+                                                    accept="text/csv"
+                                                    className={classes.input}
+                                                    id="contained-button-file"
+                                                    multiple
+                                                    type="file"
+                                                    onChange={this._handleImageChange}
+                                                />
+                                                <label htmlFor="contained-button-file">
+                                                    <Button  component="span" className={classes.browserButton}   onClick={this.toggle.bind(this)}>
+                                                        Upload
+                                                    </Button>
+                                                </label>
+                                            </Grid>
                                         </div>
                                     </Grid>
                                 </Grid>

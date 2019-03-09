@@ -15,3 +15,9 @@ ul{
     padding-inline-start: 40px;
 
 }
+img{
+    border: none !important;
+}
+label{
+    border: none !important;
+}
